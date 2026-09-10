@@ -4,8 +4,6 @@ from rest_framework.views import exception_handler as drf_exception_handler
 
 
 class ApiError(APIException):
-    """뷰에서 던지면 그대로 상태코드와 메시지가 되는 에러."""
-
     def __init__(self, status_code, code, message):
         self.status_code = status_code
         self.code = code
@@ -25,7 +23,6 @@ def _body(code, message):
 
 
 def api_exception_handler(exc, context):
-    """DRF 의 모든 에러 응답을 { "error": { "code", "message" } } 로 통일한다."""
     if isinstance(exc, ApiError):
         response = drf_exception_handler(exc, context)
         response.data = _body(exc.code, str(exc.detail))
@@ -38,7 +35,6 @@ def api_exception_handler(exc, context):
 
     response = drf_exception_handler(exc, context)
     if response is None:
-        # DRF 가 처리하지 못한 예외는 그대로 올려보내 Django 가 500 을 내게 한다.
         return None
 
     detail = response.data.get("detail") if isinstance(response.data, dict) else None

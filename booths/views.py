@@ -13,7 +13,6 @@ from .models import Booth, BoothView
 from .params import parse_enum, parse_enum_list, parse_integer, parse_string
 from .serializers import BoothDetailSerializer, BoothSummarySerializer
 
-# 프론트 MenuBox.jsx 의 '이름 순 / 인기 순 / 추천 순' + 지도용 부스 번호 순
 SORTS = {
     "id": ["id"],
     "name": ["name", "id"],
@@ -21,7 +20,6 @@ SORTS = {
     "recommend": ["-recommend_score", "-view_count", "id"],
 }
 
-# RecommendedBooth.jsx 의 '최다 조회수' / '최고 조회시간' 카드
 RANKING_METRICS = {
     "views": ["-view_count", "-total_duration_ms", "id"],
     "duration": ["-total_duration_ms", "-view_count", "id"],
@@ -30,7 +28,6 @@ RANKING_METRICS = {
 
 
 def with_stats(queryset):
-    """부스별 조회 통계를 붙인다. 부스가 40개 수준이라 실시간 집계로 충분하다."""
     return queryset.annotate(
         view_count=Count("views"),
         visitor_count=Count("views__visitor_id", distinct=True),
@@ -42,7 +39,6 @@ def with_stats(queryset):
 
 
 def stat_payload(booth_id):
-    """조회 통계만 담은 응답. 프론트가 화면의 조회수를 바로 갱신할 수 있게 한다."""
     booth = with_stats(Booth.objects.filter(pk=booth_id)).first()
     if booth is None:
         return None
@@ -66,11 +62,6 @@ def health(request):
 
 
 class BoothListView(APIView):
-    """GET /api/booths
-
-    프론트 ServiceListPage 의 검색창 + FilterBox + MenuBox 를 한 번에 받는다.
-    """
-
     def get(self, request):
         query = request.query_params
 
@@ -114,8 +105,6 @@ class BoothListView(APIView):
 
 
 class BoothTagListView(APIView):
-    """GET /api/booths/tags — 태그별 부스 수. 필터 칩을 하드코딩하지 않아도 되게 한다."""
-
     def get(self, request):
         counts = dict(
             Booth.objects.values_list("tag").annotate(count=Count("id")).values_list("tag", "count")
@@ -127,8 +116,6 @@ class BoothTagListView(APIView):
 
 
 class BoothRankingView(APIView):
-    """GET /api/booths/ranking?metric=views|duration|avgDuration&limit=3"""
-
     def get(self, request):
         metric = parse_enum(
             request.query_params.get("metric"),
@@ -146,8 +133,6 @@ class BoothRankingView(APIView):
 
 
 class BoothDetailView(APIView):
-    """GET /api/booths/:id — 상세. functions / techStack 배열 포함."""
-
     def get(self, request, booth_id):
         booth = (
             with_stats(Booth.objects.filter(pk=booth_id))
@@ -162,8 +147,6 @@ class BoothDetailView(APIView):
 
 
 class BoothViewLogView(APIView):
-    """부스 조회 로그. '인기 순' 정렬과 랭킹 API 의 원본 데이터."""
-
     def _require_booth(self, booth_id):
         if not Booth.objects.filter(pk=booth_id).exists():
             raise ApiError.not_found(f"{booth_id}번 부스를 찾을 수 없습니다.", "BOOTH_NOT_FOUND")
@@ -185,13 +168,11 @@ class BoothViewLogView(APIView):
             raise ApiError.bad_request(
                 "durationMs 는 0 이상의 숫자여야 합니다.", "INVALID_DURATION"
             )
-        if raw_duration < 0 or raw_duration != raw_duration:  # NaN 도 거른다
+        if raw_duration < 0 or raw_duration != raw_duration:
             raise ApiError.bad_request(
                 "durationMs 는 0 이상의 숫자여야 합니다.", "INVALID_DURATION"
             )
 
-        # 상한을 넘는 값은 거절하지 않고 잘라서 기록한다. 통계만 지키면 되고,
-        # 이탈 시점 전송은 실패해도 재시도할 방법이 없기 때문.
         duration_ms = min(round(raw_duration), settings.MAX_VIEW_DURATION_MS)
 
         BoothView.objects.create(

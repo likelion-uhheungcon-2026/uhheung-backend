@@ -1,11 +1,3 @@
-"""data/booths.seed.json 의 부스 데이터를 DB 에 밀어 넣는다.
-
-실행할 때마다 booth 테이블을 비우고 다시 채우므로 언제든 되돌릴 수 있다.
-
-    python manage.py seed_booths                부스 데이터만
-    python manage.py seed_booths --with-views   + 로컬 확인용 가짜 조회 로그
-"""
-
 import json
 
 from django.conf import settings
@@ -34,7 +26,6 @@ class Command(BaseCommand):
         booths = json.loads(settings.SEED_FILE.read_text(encoding="utf-8"))
 
         with transaction.atomic():
-            # FK 가 CASCADE 이므로 booth 만 지우면 자식 테이블도 함께 정리된다.
             Booth.objects.all().delete()
 
             for index, item in enumerate(booths):
@@ -93,7 +84,6 @@ class Command(BaseCommand):
             )
 
     def _seed_views(self, booths):
-        """앞쪽 부스일수록 조회수가 많게 만들어 정렬 결과를 눈으로 구분할 수 있게 한다."""
         logs = []
         for item in booths:
             booth_id = item["id"]
