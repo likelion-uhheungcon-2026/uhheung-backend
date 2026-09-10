@@ -1,0 +1,25 @@
+# 가상환경
+.venv/
+venv/
+
+# 파이썬
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# 환경 변수
+.env
+.env.local
+
+# SQLite
+*.sqlite3
+data/*.db
+
+# 로그 / OS
+*.log
+.DS_Store
+Thumbs.db
+
+# 에디터
+.idea/
+.vscode/
