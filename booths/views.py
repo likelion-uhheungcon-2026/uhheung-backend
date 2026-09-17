@@ -2,14 +2,14 @@ import math
 from datetime import datetime, timezone
 
 from django.conf import settings
-from django.db.models import Avg, Count, IntegerField, Q, Sum, Value
+from django.db.models import Avg, Count, Exists, IntegerField, OuterRef, Q, Sum, Value
 from django.db.models.functions import Cast, Coalesce
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .exceptions import ApiError
-from .models import Booth, BoothView
+from .models import Booth, BoothImage, BoothView
 from .params import parse_enum, parse_enum_list, parse_integer, parse_string
 from .serializers import BoothDetailSerializer, BoothSummarySerializer
 
@@ -34,6 +34,12 @@ def with_stats(queryset):
         total_duration_ms=Coalesce(Sum("views__duration_ms"), Value(0)),
         avg_duration_ms=Cast(
             Coalesce(Avg("views__duration_ms"), Value(0.0)), IntegerField()
+        ),
+        has_service_image=Exists(
+            BoothImage.objects.filter(booth_id=OuterRef("pk"), service_image__isnull=False)
+        ),
+        has_logo_image=Exists(
+            BoothImage.objects.filter(booth_id=OuterRef("pk"), logo_image__isnull=False)
         ),
     )
 
@@ -100,7 +106,7 @@ class BoothListView(APIView):
 
         return Response(
             {
-                "items": serializer(items, many=True).data,
+                "items": serializer(items, many=True, context={"request": request}).data,
                 "page": page,
                 "size": size,
                 "total": total,
@@ -134,7 +140,14 @@ class BoothRankingView(APIView):
 
         items = with_stats(Booth.objects.all()).order_by(*RANKING_METRICS[metric])[:limit]
 
-        return Response({"metric": metric, "items": BoothSummarySerializer(items, many=True).data})
+        return Response(
+            {
+                "metric": metric,
+                "items": BoothSummarySerializer(
+                    items, many=True, context={"request": request}
+                ).data,
+            }
+        )
 
 
 class BoothDetailView(APIView):
@@ -148,7 +161,28 @@ class BoothDetailView(APIView):
         if booth is None:
             raise ApiError.not_found(f"{booth_id}번 부스를 찾을 수 없습니다.", "BOOTH_NOT_FOUND")
 
-        return Response(BoothDetailSerializer(booth).data)
+        return Response(BoothDetailSerializer(booth, context={"request": request}).data)
+
+
+class BoothImageView(APIView):
+    field = "service_image"
+
+    def get(self, request, booth_id):
+        image = BoothImage.objects.filter(booth_id=booth_id).only(self.field).first()
+        data = getattr(image, self.field, None) if image else None
+
+        if not data:
+            raise ApiError.not_found(
+                f"{booth_id}번 부스의 이미지를 찾을 수 없습니다.", "BOOTH_IMAGE_NOT_FOUND"
+            )
+
+        response = HttpResponse(bytes(data), content_type="image/png")
+        response["Cache-Control"] = "public, max-age=86400"
+        return response
+
+
+class BoothLogoView(BoothImageView):
+    field = "logo_image"
 
 
 class BoothViewLogView(APIView):

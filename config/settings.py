@@ -8,7 +8,6 @@ DEBUG = os.environ.get("DEBUG", "1") == "1"
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "*").split(",")
 
 INSTALLED_APPS = [
-    "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
@@ -89,17 +88,6 @@ CORS_ALLOWED_ORIGINS = [
     if origin.strip()
 ]
 
-CSRF_TRUSTED_ORIGINS = [
-    origin.strip()
-    for origin in os.environ.get("CSRF_TRUSTED_ORIGINS", "").split(",")
-    if origin.strip()
-]
-
-if not DEBUG:
-    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-
 BOOTH_TAGS = ["멋사", "SJF", "AAC", "OPEN"]
 
 DEFAULT_PAGE_SIZE = 20
@@ -108,3 +96,6 @@ MAX_PAGE_SIZE = 100
 MAX_VIEW_DURATION_MS = 6 * 60 * 60 * 1000
 
 SEED_FILE = BASE_DIR / "data" / "booths.seed.json"
+
+BOOTH_IMAGE_WIDTH = 1200
+BOOTH_LOGO_WIDTH = 600

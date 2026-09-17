@@ -37,6 +37,24 @@ class Booth(models.Model):
         return f"{self.id}번 {self.name}"
 
 
+class BoothImage(models.Model):
+    booth_id = models.IntegerField(primary_key=True, verbose_name="부스 번호")
+
+    service_image = models.BinaryField(blank=True, null=True, verbose_name="대표 이미지")
+    logo_image = models.BinaryField(blank=True, null=True, verbose_name="로고 이미지")
+
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "booth_image"
+        ordering = ["booth_id"]
+        verbose_name = "부스 이미지"
+        verbose_name_plural = "부스 이미지"
+
+    def __str__(self):
+        return f"{self.booth_id}번 이미지"
+
+
 class BoothFunction(models.Model):
     booth = models.ForeignKey(Booth, on_delete=models.CASCADE, related_name="functions")
     position = models.IntegerField()

@@ -5,7 +5,8 @@ from .models import Booth
 
 class BoothSummarySerializer(serializers.ModelSerializer):
     maincontent = serializers.CharField(source="main_content")
-    serviceimage = serializers.CharField(source="service_image", allow_null=True)
+    serviceimage = serializers.SerializerMethodField()
+    logoimage = serializers.SerializerMethodField()
     servicelink = serializers.CharField(source="service_link", allow_null=True)
     recommendScore = serializers.IntegerField(source="recommend_score")
 
@@ -23,6 +24,7 @@ class BoothSummarySerializer(serializers.ModelSerializer):
             "tag",
             "maincontent",
             "serviceimage",
+            "logoimage",
             "servicelink",
             "recommendScore",
             "viewCount",
@@ -30,6 +32,21 @@ class BoothSummarySerializer(serializers.ModelSerializer):
             "totalDurationMs",
             "avgDurationMs",
         ]
+
+    def _image_url(self, booth, suffix):
+        url = f"/api/booths/{booth.id}/{suffix}"
+        request = self.context.get("request")
+        return request.build_absolute_uri(url) if request else url
+
+    def get_serviceimage(self, booth):
+        if getattr(booth, "has_service_image", False):
+            return self._image_url(booth, "image")
+        return booth.service_image or None
+
+    def get_logoimage(self, booth):
+        if getattr(booth, "has_logo_image", False):
+            return self._image_url(booth, "logo")
+        return None
 
 
 class BoothDetailSerializer(BoothSummarySerializer):
