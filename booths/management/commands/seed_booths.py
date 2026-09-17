@@ -36,24 +36,24 @@ class Command(BaseCommand):
                     name=item["name"],
                     team=item["team"],
                     tag=item["tag"],
-                    main_content=item.get("mainContent") or "",
+                    main_content=item.get("maincontent") or "",
                     content=item.get("content") or "",
                     retrospect=item.get("retrospect") or "",
-                    service_image=item.get("serviceImage"),
-                    service_link=item.get("serviceLink"),
-                    github_link=item.get("githubLink"),
-                    figma_link=item.get("figmaLink"),
+                    service_image=item.get("serviceimage"),
+                    service_link=item.get("servicelink"),
+                    github_link=item.get("githublink"),
+                    figma_link=item.get("figmalink"),
                     recommend_score=item.get("recommendScore", 0),
                 )
 
                 BoothFunction.objects.bulk_create(
                     BoothFunction(booth=booth, position=position, content=content)
-                    for position, content in enumerate(item.get("functions") or [])
+                    for position, content in enumerate(item.get("function") or [])
                 )
 
                 BoothTechStack.objects.bulk_create(
                     BoothTechStack(booth=booth, position=position, content=content)
-                    for position, content in enumerate(item.get("techStack") or [])
+                    for position, content in enumerate(item.get("techstack") or [])
                 )
 
             if with_views:

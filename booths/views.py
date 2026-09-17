@@ -76,6 +76,7 @@ class BoothListView(APIView):
             maximum=settings.MAX_PAGE_SIZE,
             fallback=settings.DEFAULT_PAGE_SIZE,
         )
+        detail = parse_integer(query.get("detail"), field="detail", minimum=0, maximum=1, fallback=0) == 1
 
         booths = Booth.objects.all()
 
@@ -91,11 +92,15 @@ class BoothListView(APIView):
 
         total = booths.count()
         offset = (page - 1) * size
-        items = with_stats(booths).order_by(*SORTS[sort])[offset : offset + size]
+        items = with_stats(booths).order_by(*SORTS[sort])
+        if detail:
+            items = items.prefetch_related("functions", "tech_stack")
+        items = items[offset : offset + size]
+        serializer = BoothDetailSerializer if detail else BoothSummarySerializer
 
         return Response(
             {
-                "items": BoothSummarySerializer(items, many=True).data,
+                "items": serializer(items, many=True).data,
                 "page": page,
                 "size": size,
                 "total": total,
