@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 
 from django.conf import settings
 from django.db.models import Avg, Count, Exists, IntegerField, OuterRef, Q, Sum, Value
-from django.db.models.functions import Cast, Coalesce
+from django.db.models.functions import Cast, Coalesce, Lower
 from django.http import HttpResponse, JsonResponse
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -15,7 +15,7 @@ from .serializers import BoothDetailSerializer, BoothSummarySerializer
 
 SORTS = {
     "id": ["id"],
-    "name": ["name", "id"],
+    "name": [Lower("name"), "id"],
     "popular": ["-view_count", "-total_duration_ms", "id"],
     "recommend": ["-recommend_score", "-view_count", "id"],
 }
@@ -207,7 +207,7 @@ class BoothViewLogView(APIView):
             raise ApiError.bad_request(
                 "durationMs 는 0 이상의 숫자여야 합니다.", "INVALID_DURATION"
             )
-        if raw_duration < 0 or raw_duration != raw_duration:
+        if not math.isfinite(raw_duration) or raw_duration < 0:
             raise ApiError.bad_request(
                 "durationMs 는 0 이상의 숫자여야 합니다.", "INVALID_DURATION"
             )

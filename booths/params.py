@@ -5,6 +5,8 @@ from .exceptions import ApiError
 def parse_string(value, field, max_length=100):
     if value is None:
         return ""
+    if not isinstance(value, str):
+        raise ApiError.bad_request(f"{field} 는 문자열이어야 합니다.")
 
     trimmed = value.strip()
     if len(trimmed) > max_length:
