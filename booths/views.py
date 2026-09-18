@@ -1,5 +1,5 @@
 import math
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 from django.conf import settings
 from django.db.models import Avg, Count, Exists, IntegerField, OuterRef, Q, Sum, Value
@@ -17,7 +17,7 @@ SORTS = {
     "id": ["id"],
     "name": [Lower("name"), "id"],
     "popular": ["-view_count", "-total_duration_ms", "id"],
-    "recommend": ["-recommend_score", "-view_count", "id"],
+    "recommend": ["-recent_view_count", "-view_count", "id"],
 }
 
 RANKING_METRICS = {
@@ -28,8 +28,13 @@ RANKING_METRICS = {
 
 
 def with_stats(queryset):
+    recent_since = datetime.now(timezone.utc) - timedelta(
+        minutes=settings.TRENDING_WINDOW_MINUTES
+    )
+
     return queryset.annotate(
         view_count=Count("views"),
+        recent_view_count=Count("views", filter=Q(views__viewed_at__gte=recent_since)),
         visitor_count=Count("views__visitor_id", distinct=True),
         total_duration_ms=Coalesce(Sum("views__duration_ms"), Value(0)),
         avg_duration_ms=Cast(
@@ -52,6 +57,7 @@ def stat_payload(booth_id):
     return {
         "boothId": booth.id,
         "viewCount": booth.view_count,
+        "recentViewCount": booth.recent_view_count,
         "visitorCount": booth.visitor_count,
         "totalDurationMs": booth.total_duration_ms,
         "avgDurationMs": booth.avg_duration_ms,

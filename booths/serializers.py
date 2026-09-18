@@ -11,6 +11,7 @@ class BoothSummarySerializer(serializers.ModelSerializer):
     recommendScore = serializers.IntegerField(source="recommend_score")
 
     viewCount = serializers.IntegerField(source="view_count")
+    recentViewCount = serializers.IntegerField(source="recent_view_count")
     visitorCount = serializers.IntegerField(source="visitor_count")
     totalDurationMs = serializers.IntegerField(source="total_duration_ms")
     avgDurationMs = serializers.IntegerField(source="avg_duration_ms")
@@ -28,6 +29,7 @@ class BoothSummarySerializer(serializers.ModelSerializer):
             "servicelink",
             "recommendScore",
             "viewCount",
+            "recentViewCount",
             "visitorCount",
             "totalDurationMs",
             "avgDurationMs",
