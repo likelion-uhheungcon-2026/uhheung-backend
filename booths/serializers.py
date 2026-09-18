@@ -4,12 +4,14 @@ from .models import Booth
 
 
 class BoothSummarySerializer(serializers.ModelSerializer):
-    mainContent = serializers.CharField(source="main_content")
-    serviceImage = serializers.CharField(source="service_image", allow_null=True)
-    serviceLink = serializers.CharField(source="service_link", allow_null=True)
+    maincontent = serializers.CharField(source="main_content")
+    serviceimage = serializers.SerializerMethodField()
+    logoimage = serializers.SerializerMethodField()
+    servicelink = serializers.CharField(source="service_link", allow_null=True)
     recommendScore = serializers.IntegerField(source="recommend_score")
 
     viewCount = serializers.IntegerField(source="view_count")
+    recentViewCount = serializers.IntegerField(source="recent_view_count")
     visitorCount = serializers.IntegerField(source="visitor_count")
     totalDurationMs = serializers.IntegerField(source="total_duration_ms")
     avgDurationMs = serializers.IntegerField(source="avg_duration_ms")
@@ -21,35 +23,52 @@ class BoothSummarySerializer(serializers.ModelSerializer):
             "name",
             "team",
             "tag",
-            "mainContent",
-            "serviceImage",
-            "serviceLink",
+            "maincontent",
+            "serviceimage",
+            "logoimage",
+            "servicelink",
             "recommendScore",
             "viewCount",
+            "recentViewCount",
             "visitorCount",
             "totalDurationMs",
             "avgDurationMs",
         ]
 
+    def _image_url(self, booth, suffix):
+        url = f"/api/booths/{booth.id}/{suffix}"
+        request = self.context.get("request")
+        return request.build_absolute_uri(url) if request else url
+
+    def get_serviceimage(self, booth):
+        if getattr(booth, "has_service_image", False):
+            return self._image_url(booth, "image")
+        return booth.service_image or None
+
+    def get_logoimage(self, booth):
+        if getattr(booth, "has_logo_image", False):
+            return self._image_url(booth, "logo")
+        return None
+
 
 class BoothDetailSerializer(BoothSummarySerializer):
-    githubLink = serializers.CharField(source="github_link", allow_null=True)
-    figmaLink = serializers.CharField(source="figma_link", allow_null=True)
-    functions = serializers.SerializerMethodField()
-    techStack = serializers.SerializerMethodField()
+    githublink = serializers.CharField(source="github_link", allow_null=True)
+    figmalink = serializers.CharField(source="figma_link", allow_null=True)
+    function = serializers.SerializerMethodField()
+    techstack = serializers.SerializerMethodField()
 
     class Meta(BoothSummarySerializer.Meta):
         fields = BoothSummarySerializer.Meta.fields + [
             "content",
             "retrospect",
-            "githubLink",
-            "figmaLink",
-            "functions",
-            "techStack",
+            "githublink",
+            "figmalink",
+            "function",
+            "techstack",
         ]
 
-    def get_functions(self, booth):
+    def get_function(self, booth):
         return [item.content for item in booth.functions.all()]
 
-    def get_techStack(self, booth):
+    def get_techstack(self, booth):
         return [item.content for item in booth.tech_stack.all()]

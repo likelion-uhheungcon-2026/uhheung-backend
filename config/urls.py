@@ -1,4 +1,3 @@
-from django.contrib import admin
 from django.urls import include, path, re_path
 
 from booths.exceptions import not_found
@@ -7,7 +6,6 @@ from booths.views import health
 urlpatterns = [
     path("api/health", health),
     path("api/", include("booths.urls")),
-    path("admin/", admin.site.urls),
     re_path(r"^.*$", not_found),
 ]
 

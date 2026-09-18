@@ -1,1088 +1,597 @@
 [
   {
     "id": 1,
-    "name": "트래블",
-    "team": "여행가자",
+    "name": "Aftor",
+    "team": "국경없는사자들",
     "tag": "멋사",
-    "serviceImage": "/images/booths/service1.svg",
-    "serviceLink": "https://travelmate.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/travelmate",
-    "figmaLink": "https://figma.com/uhheungcon/travelmate",
-    "mainContent": "AI가 여행 계획을 쉽고 빠르게 만들어주는 서비스",
-    "content": "TravelMate는 사용자의 여행 기간, 예산, 선호하는 여행 스타일을 기반으로 개인 맞춤형 여행 일정을 생성해주는 AI 여행 플래너 서비스입니다. 기존 여행 계획 과정에서 발생하는 정보 탐색의 번거로움을 해결하기 위해 사용자가 원하는 조건을 입력하면 AI가 관광지, 맛집, 숙소, 이동 경로를 종합적으로 분석하여 최적의 여행 코스를 추천합니다. 단순히 장소를 나열하는 것이 아니라 여행자의 취향과 상황을 고려하여 실제 방문 가능한 일정으로 구성하며, 생성된 일정은 사용자가 직접 수정하고 저장할 수 있습니다. 또한 친구나 가족과 여행 계획을 공유할 수 있는 기능을 제공하여 여러 사람이 함께 효율적으로 여행을 준비할 수 있도록 돕습니다.",
-    "retrospect": "TravelMate를 개발하면서 AI 서비스를 구현할 때 단순히 AI 모델을 연결하는 것보다 사용자가 원하는 결과를 안정적으로 제공하는 과정이 중요하다는 것을 배웠습니다. 초기 개발 과정에서는 사용자가 입력한 정보와 AI가 생성하는 결과 사이에 차이가 발생하는 문제가 있었고, 이를 해결하기 위해 다양한 프롬프트 구조를 실험하고 입력 데이터를 세분화하는 과정을 거쳤습니다. 또한 여행 서비스 특성상 위치 정보와 일정 데이터가 밀접하게 연결되어 있어 외부 API 데이터를 처리하고 예외 상황을 관리하는 과정에서 많은 고민이 필요했습니다. 개발 과정에서 사용자 경험을 개선하기 위해 화면 흐름과 정보 전달 방식도 지속적으로 개선했습니다. 기능을 많이 추가하는 것보다 사용자가 실제 여행 준비 과정에서 어떤 불편함을 느끼는지 파악하고 이를 해결하는 방향으로 서비스를 발전시키는 것이 중요하다는 것을 깨달았습니다. 이번 프로젝트를 통해 AI 기술과 서비스 기획, 프론트엔드 구현이 어떻게 연결되는지 경험할 수 있었으며, 실제 사용자가 사용할 수 있는 서비스를 완성하는 과정의 중요성을 배울 수 있었습니다.",
-    "functions": [
-      "AI 기반 맞춤형 여행 일정 생성",
-      "예산별 숙소 및 맛집 추천",
-      "지도 기반 이동 경로 최적화",
-      "실시간 일정 재구성",
-      "여행 일정 공유 및 공동 편집",
-      "예상 여행 비용 자동 계산"
+    "serviceimage": null,
+    "servicelink": "https://borderlesslion-front.vercel.app/",
+    "githublink": "https://github.com/2026-LIKELION-Hackathon-EWHA-Team2",
+    "figmalink": null,
+    "maincontent": "귀국 후까지 의료정보와 병원을 연결하는 AI 기반 크로스보더 협진 플랫폼",
+    "content": "한국의 피부·성형 의료를 이용하는 외국인 환자는 꾸준히 증가하고 있지만, 기존 의료관광 서비스는 병원 탐색·가격 비교·상담·예약 등 주로 ‘시술 전’ 과정에 집중되어 있습니다. 반면 환자가 귀국한 뒤 부작용이나 이상 증상을 겪을 경우, 언어 장벽과 의료정보의 단절로 인해 한국 병원에 상황을 정확히 전달하기 어렵습니다. 자국 병원을 방문하더라도 시술명, 시술일, 사용 약물, 의료진 소견 등의 기록이 체계적으로 전달되지 않아 환자의 기억과 설명에 의존해야 하는 문제가 발생합니다.\n실제 외국인 환자 진료 경험이 있는 의료진 인터뷰에서도 사진만으로 상태를 정확히 판단하기 어렵고, 이전 진료기록이 전달되지 않아 대응에 한계가 있다는 페인포인트가 확인되었습니다.\nAftor는 이를 단순 번역 서비스가 아닌 의료정보 구조화–자국 병원 매칭–양국 의료진 협진으로 해결합니다. 기존 서비스가 환자를 한국 병원에 연결하는 데 집중했다면, Aftor는 귀국 이후 자국 의료진까지 연결해 끊어진 의료 여정을 이어주는 것을 목표로 합니다.",
+    "function": [
+      "환자 증상 케이스 등록 및 AI 구조화 분석",
+      "국가 간 병원 협진 채팅",
+      "AI 의료 협진 합의안 생성"
     ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: Spring Boot",
-      "Database: PostgreSQL",
-      "AI: OpenAI API",
-      "Map API: Google Maps API",
-      "Deployment: AWS EC2"
-    ]
+    "techstack": [
+      "Backend - Python·Django | API DRF | DB PostgreSQL | AI OpenAI API | Deploy Render",
+      "Frontend - React·HTML5·CSS3·JavaScript (JSX) | State Zustand·TanStack Query | Styling Tailwind CSS | Routing React Router | Network Axios | Build Vite | Deploy Vercel",
+      "PM - Figma"
+    ],
+    "retrospect": ""
   },
   {
     "id": 2,
-    "name": "StudyFlow",
-    "team": "공부해",
-    "tag": "AAC",
-    "serviceImage": "/images/booths/service2.svg",
-    "serviceLink": "https://studyflow.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/studyflow",
-    "figmaLink": null,
-    "mainContent": "학습 계획부터 기록까지 관리하는 스마트 공부 서비스",
-    "content": "StudyFlow는 사용자가 자신의 학습 목표를 설정하고 공부 과정을 체계적으로 관리할 수 있도록 돕는 스마트 학습 관리 플랫폼입니다. 많은 학생들이 공부 계획을 세우지만 꾸준히 기록하고 자신의 학습 패턴을 분석하는 데 어려움을 겪는다는 점에서 시작된 서비스입니다. 사용자는 공부 시간을 기록하고 목표 달성률을 확인하며, 누적된 학습 데이터를 기반으로 자신의 공부 습관을 분석할 수 있습니다. 또한 AI 기반 학습 계획 추천 기능을 통해 사용자의 목표와 현재 학습 상황에 맞는 계획을 제안하며, 단순한 기록 도구를 넘어 지속적인 학습 동기를 제공하는 것을 목표로 합니다. 친구와 학습 기록을 공유하거나 성취 현황을 비교할 수 있어 혼자 공부할 때 발생하는 낮은 집중력과 의지 부족 문제를 해결할 수 있도록 설계되었습니다.",
-    "retrospect": "StudyFlow 프로젝트를 진행하면서 사용자가 꾸준히 이용하는 서비스를 만들기 위해서는 단순히 다양한 기능을 제공하는 것보다 사용자의 행동 흐름을 이해하는 것이 중요하다는 것을 배웠습니다. 초기에는 많은 기능을 추가하는 데 집중했지만, 실제 사용자가 어떤 상황에서 서비스를 이용하고 어떤 정보를 가장 필요로 하는지 분석하면서 핵심 기능의 우선순위를 정하는 과정이 필요했습니다. 공부 시간 기록, 목표 관리, 통계 시각화 기능을 구현하면서 데이터 구조 설계와 상태 관리의 중요성을 경험했습니다. 특히 사용자의 학습 데이터를 어떻게 저장하고 의미 있는 정보로 보여줄 것인지 고민하며 데이터 처리 과정에 대한 이해를 높일 수 있었습니다. 또한 여러 화면에서 동일한 데이터를 활용하는 과정에서 효율적인 상태 관리 방식과 컴포넌트 설계의 중요성을 배웠습니다. 이번 프로젝트를 통해 개발자는 단순히 요구사항을 구현하는 사람이 아니라 사용자의 문제를 발견하고 더 나은 경험을 제공하는 역할이라는 것을 느꼈으며, 앞으로 서비스를 개발할 때도 사용자 중심의 사고를 유지해야겠다는 목표를 가지게 되었습니다.",
-    "functions": [
-      "공부 시간 자동 측정",
-      "AI 학습 계획 추천",
-      "목표 달성률 시각화",
-      "학습 통계 제공",
-      "할 일 관리",
-      "친구와 학습 기록 공유"
+    "name": "TravelGuard",
+    "team": "말랑이",
+    "tag": "멋사",
+    "serviceimage": null,
+    "servicelink": null,
+    "githublink": "https://github.com/team-mallang/likelion-hackathon",
+    "figmalink": null,
+    "maincontent": "Travel Guard는 해외 여행 중 분실·도난 사고를 겪은 한국인 여행자가 낯선 현지 환경에서도 사건 발생부터 신고와 후속 조치까지 대응할 수 있도록 돕는 사건 대응 서비스입니다.",
+    "content": "해외에서 물품을 분실하거나 도난당하면 여행자는 단순히 언어의 문제만 겪는 것이 아닙니다. 어디에 신고해야 하는지, 현지 경찰에게 어떤 정보를 전달해야 하는지, 어떤 서류가 필요한지 알기 어렵고, 신고 이후에도 카드 정지·통신사 연락·여권 관련 조치·보험 청구 준비 등 여러 절차를 찾아 연결해야 합니다.\n\n기존의 검색이나 번역만으로는 이러한 문제를 하나의 흐름으로 해결하기 어렵습니다. 사용자가 번역기, 지도, 기관별 안내 페이지 등을 오가며 자신의 상황에 필요한 정보를 직접 판단하고 조합해야 하기 때문입니다. 특히 사건 직후의 당황스러운 상황에서는 필요한 대응의 순서를 놓치거나 중요한 절차를 누락할 가능성도 있습니다.\n\n이를 해결하기 위해 사용자가 음성 또는 텍스트로 설명한 상황을 하나의 구조화된 사건 카드로 변환 후 동일한 사건 정보를 기반으로 맞춤 행동 가이드, 주변 경찰기관 탐색 및 길찾기, 경찰서 현장 의사소통, 신고 관련 서류 준비, 보험 및 사후처리 안내까지 연결합니다.",
+    "function": [
+      "AI 기반 사건 분석 및 구조화를 통한 사건 카드 생성",
+      "사건 유형·분실 물품별 맞춤 행동 가이드",
+      "카드사별 분실 신고·정지 절차 안내",
+      "일본 내 여권 분실·긴급여권 발급 절차 안내",
+      "Google Maps 기반 주변 경찰서·파출소 탐색 및 길찾기",
+      "Agora 기반 실시간 음성 인식·통역",
+      "사건 정보를 활용한 AI 현장 대화 맥락 지원",
+      "경찰 신고서·사건 경위서 작성 지원",
+      "증빙 사진·신고 서류 통합 보관 및 관리",
+      "사건 진행률 및 처리 현황 체크",
+      "보험 청구·귀국 후 사후처리를 위한 사건 자료 정리 및 내보내기"
     ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Authentication: JWT",
-      "Deployment: Vercel"
-    ]
+    "techstack": [
+      "PM: Notion, GitHub",
+      "DE: Figma",
+      "FE: React Native, Expo, Expo Router, TypeScript",
+      "BE: Next.js, Node.js, Zod",
+      "AI: OpenAI API",
+      "RTC / STT: Agora RTC/RTM, ElevenLabs STT",
+      "Map: Google Maps API, React Native Maps",
+      "DB: PostgreSQL, supabase, Prisma",
+      "Deploy: AWS EC2, Docker Compose, Nginx"
+    ],
+    "retrospect": ""
   },
   {
     "id": 3,
-    "name": "펫케어",
-    "team": "멍멍냥냥",
-    "tag": "AAC",
-    "serviceImage": "/images/booths/service3.svg",
-    "serviceLink": "https://petcare.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/petcare",
-    "figmaLink": "https://figma.com/uhheungcon/petcare",
-    "mainContent": "반려동물 건강을 기록하고 관리하는 서비스",
-    "content": "PetCare는 반려동물과 함께하는 일상에서 발생하는 다양한 관리 문제를 해결하기 위한 반려동물 케어 플랫폼입니다. 반려동물을 키우는 사용자는 예방접종 일정, 건강 상태, 병원 방문 기록, 산책 기록 등 관리해야 할 정보가 많지만 이를 체계적으로 기록하고 관리하기 어렵다는 문제를 가지고 있습니다. PetCare는 이러한 불편함을 해결하기 위해 반려동물의 정보를 한 곳에서 관리할 수 있도록 설계되었습니다. 사용자는 반려동물의 기본 정보와 건강 데이터를 등록하고, 예방접종 일정이나 병원 방문 기록을 쉽게 확인할 수 있습니다. 또한 산책 기록과 사진 앨범 기능을 통해 반려동물과 함께한 소중한 순간을 저장할 수 있으며, 장기적으로 반려동물의 건강 변화를 확인할 수 있도록 돕습니다. 반려동물과 보호자가 더욱 건강하고 행복한 시간을 보낼 수 있도록 편리한 관리 경험을 제공하는 서비스입니다.",
-    "retrospect": "PetCare 프로젝트를 진행하면서 특정 사용자를 대상으로 한 서비스를 개발할 때 사용자의 실제 상황과 불편함을 깊게 이해하는 과정이 중요하다는 것을 배웠습니다. 단순히 반려동물 관련 기능을 제공하는 것이 아니라 보호자가 어떤 순간에 어떤 정보를 필요로 하는지 고민하며 서비스 구조를 설계했습니다. 건강 기록과 일정 관리 기능을 구현하면서 데이터의 저장 방식과 사용자 경험 사이의 균형을 맞추는 과정이 중요했습니다. 특히 모바일 환경에서는 작은 화면 안에서 많은 정보를 효과적으로 전달해야 했기 때문에 직관적인 UI 구성과 화면 흐름 설계에 많은 고민을 했습니다. 또한 알림 기능과 사용자 데이터 관리 과정을 구현하면서 실제 서비스에서 안정적인 데이터 처리와 예외 상황 대응이 얼마나 중요한지 경험했습니다. 이번 프로젝트를 통해 기능 구현 능력뿐만 아니라 사용자의 입장에서 문제를 바라보고 해결하는 서비스 개발 방식에 대해 배울 수 있었습니다.",
-    "functions": [
-      "건강 기록 관리",
-      "예방접종 일정 알림",
-      "산책 기록 저장",
-      "사진 앨범 제공",
-      "병원 방문 이력 관리",
-      "반려동물 프로필 관리"
+    "name": "pick nu",
+    "team": "시원쿨쿨 멋터밤",
+    "tag": "OPEN",
+    "serviceimage": null,
+    "servicelink": null,
+    "githublink": "https://github.com/holybanguda/2026_hackerton_back",
+    "figmalink": null,
+    "maincontent": "인원·예산·취향과 실제 매장 메뉴를 반영해 AI가 메뉴 조합을 추천하는 QR 주문 서비스",
+    "content": "PICK NU는 식당의 QR코드를 스캔하면 별도 앱 설치나 회원가입 없이 바로 이용할 수 있는 상황 인지형 AI 메뉴 추천 서비스입니다. 사용자가 인원수, 예산, 식사 분위기, 기피 음식, 선호 맛 등을 입력하면 AI가 해당 매장의 메뉴 데이터를 분석해 조건에 맞는 메뉴 조합을 빠르게 추천합니다. 재추천 시에는 경과 시간과 식사 상황을 반영해 더 적절한 메뉴를 제안하며, 세션 기반으로 동작해 이용 종료 또는 48시간 경과 후 임시 데이터를 자동 폐기합니다. 메뉴 검색이 아닌 ‘결정’ 자체를 돕는 스마트 다이닝 서비스입니다.",
+    "function": [
+      "QR 기반 간편 접속 — 앱 설치·회원가입 없이 즉시 서비스 이용",
+      "실시간 매장 메뉴 데이터 파싱 및 구조화",
+      "인원수·예산·분위기·취향 기반 AI 메뉴 추천",
+      "기피 음식 및 선호 맛을 반영한 맞춤형 추천",
+      "예산과 인원에 맞는 메뉴 조합 및 수량 추천",
+      "경과 시간을 반영한 상황 인지형 AI 재추천",
+      "중복 메뉴 방지 및 추천 결과 금액 검증",
+      "세션 기반 이용 및 48시간 경과 후 임시 데이터 자동 폐기"
     ],
-    "techStack": [
-      "Frontend: React Native",
-      "Backend: Firebase",
-      "Database: Firestore",
-      "Notification: Firebase Cloud Messaging",
-      "Deployment: Firebase Hosting"
-    ]
+    "techstack": [
+      "PM/협업: Notion, Discord, GitHub",
+      "DE: Figma, Adobe Illustrator",
+      "BE: Spring Boot, FastAPI",
+      "FE: 별도 표기 없음",
+      "AI: PyTorch, OpenCV, Hugging Face, Gemini, ChatGPT",
+      "DB: MySQL",
+      "Deploy: AWS, Docker, Vercel",
+      "Dev Tool: Cursor"
+    ],
+    "retrospect": ""
   },
   {
     "id": 4,
-    "name": "EcoMarket",
-    "team": "친환경",
+    "name": "MCM Orbit",
+    "team": "꽃보다사자",
     "tag": "SJF",
-    "serviceImage": "/images/booths/service4.svg",
-    "serviceLink": "https://ecomarket.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/ecomarket",
-    "figmaLink": "https://figma.com/uhheungcon/ecomarket",
-    "mainContent": "친환경 중고거래를 위한 지역 기반 플랫폼",
-    "content": "EcoMarket은 사용하지 않는 물건을 필요한 사람과 연결하여 자원의 재사용을 돕는 지역 기반 친환경 중고거래 플랫폼입니다. 기존 중고거래 서비스에서 발생하는 낮은 신뢰도와 먼 거리 거래의 불편함을 해결하기 위해 가까운 지역 사용자끼리 쉽고 안전하게 거래할 수 있도록 서비스를 구성했습니다. 사용자는 자신의 위치를 기반으로 주변 상품을 검색하고 원하는 상품의 상세 정보를 확인할 수 있습니다. 또한 실시간 채팅 기능을 통해 판매자와 빠르게 소통할 수 있으며, 거래 후기 시스템을 통해 신뢰할 수 있는 거래 환경을 만들어갑니다. 단순한 거래 플랫폼을 넘어 지역 커뮤니티 형성과 지속 가능한 소비 문화를 만드는 것을 목표로 합니다.",
-    "retrospect": "EcoMarket을 개발하면서 중고거래 서비스에서 가장 중요한 요소는 단순한 상품 등록 기능이 아니라 사용자 간 신뢰를 형성하는 경험이라는 것을 알게 되었습니다. 거래 과정에서 발생할 수 있는 불안 요소를 줄이기 위해 후기 시스템과 실시간 소통 기능을 설계했고, 사용자가 안심하고 서비스를 이용할 수 있는 환경을 만드는 데 집중했습니다. 실시간 채팅 기능을 구현하면서 클라이언트와 서버 간 데이터 전달 과정, 실시간 통신 구조에 대해 깊이 이해할 수 있었습니다. 또한 여러 사용자가 동시에 서비스를 이용하는 상황을 고려하며 데이터 처리 방식과 서버 안정성에 대해 고민하는 경험을 할 수 있었습니다. 프로젝트를 진행하며 단순히 기능을 완성하는 것에서 끝나는 것이 아니라 실제 서비스 운영 과정에서 발생할 수 있는 문제를 예측하고 개선하는 과정이 중요하다는 것을 배웠습니다. 사용자 관점에서 서비스를 바라보고 더 나은 경험을 제공하기 위해 지속적으로 개선하는 개발자의 역할에 대해 생각해볼 수 있었습니다.",
-    "functions": [
-      "지역 기반 상품 검색",
-      "실시간 채팅",
-      "거래 후기 작성",
-      "관심 상품 등록",
-      "카테고리별 상품 조회",
-      "판매자 프로필 확인"
+    "serviceimage": null,
+    "servicelink": "https://mcm-orbit.site/",
+    "githublink": "https://github.com/TEAM-LIONTHANFLOWER",
+    "figmalink": null,
+    "maincontent": "구매·미구매 경험을 연결하는 AI 기반 럭셔리 Clienteling 웹 서비스.",
+    "content": "MCM Orbit은 럭셔리 매장에서 발생하는 고객의 구매·미구매 경험을 기록하고 다음 방문까지 연결하는 AI 기반 Clienteling 서비스입니다. 구매 경험은 Arc, 미구매 방문은 Visit Memory로 축적해 직원이 고객의 이전 취향과 관심 제품, 응대 맥락을 파악할 수 있도록 지원합니다. 고객은 매장과 국가가 달라져도 이어지는 개인화 브랜드 경험을 제공받고, 브랜드는 축적된 고객 경험 데이터를 CRM 및 고객 분석에 활용할 수 있습니다. 또한 MCM Studio를 통해 매장 안팎의 브랜드 경험을 확장합니다.",
+    "function": [
+      "Arc: 고객의 구매 제품, 취향, 응대 맥락을 기록해 다음 방문의 개인화 응대로 연결",
+      "Visit Memory: 구매하지 않은 방문의 관심 제품과 고객 반응을 기록해 다음 방문에 활용",
+      "MCM Studio: MCM 브랜드 콘텐츠를 통해 고객의 브랜드 경험을 매장 안팎으로 확장"
     ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: Express",
-      "Database: MySQL",
-      "Realtime: Socket.io",
-      "Deployment: Docker"
-    ]
+    "techstack": [
+      "PM: Manifast, Notion, Figma, Slack",
+      "DE: Figma, Adobe Illustrator, Adobe Photoshop",
+      "BE: Docker, Spring Boot",
+      "FE: React Native, React, TypeScript",
+      "AI: ChatGPT, Claude",
+      "DB: Supabase, PostgreSQL, MySQL",
+      "Deploy: Gabia"
+    ],
+    "retrospect": ""
   },
   {
     "id": 5,
-    "name": "FitLog",
-    "team": "살빼기",
-    "tag": "멋사",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://fitlog.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/fitlog",
-    "figmaLink": "https://figma.com/uhheungcon/fitlog",
-    "mainContent": "운동 기록과 식단을 함께 관리하는 헬스 플랫폼",
-    "content": "FitLog는 사용자의 운동 기록과 식단 관리를 통합하여 건강한 생활 습관 형성을 돕는 헬스 관리 플랫폼입니다. 많은 사람들이 운동을 시작하지만 꾸준히 기록하고 자신의 변화를 확인하는 과정에서 어려움을 겪는다는 점에 집중하여 개발되었습니다. 사용자는 운동 루틴, 운동 기록, 식단 정보를 저장하고 누적 데이터를 기반으로 자신의 건강 관리 현황을 확인할 수 있습니다. 또한 목표 설정과 통계 기능을 통해 현재 진행 상황을 확인하고 지속적인 동기 부여를 받을 수 있도록 설계되었습니다. 개인의 운동 데이터를 기반으로 더 효율적인 건강 관리 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "FitLog 프로젝트를 개발하면서 건강 관리 서비스는 기능 자체보다 사용자가 꾸준히 사용할 수 있도록 만드는 경험 설계가 중요하다는 것을 배웠습니다. 운동 기록과 식단 관리 기능을 구현하면서 사용자가 입력하는 데이터를 어떻게 효율적으로 관리하고 의미 있는 정보로 보여줄 수 있을지 고민했습니다. 운동 통계와 목표 달성률 기능을 개발하는 과정에서 데이터를 시각적으로 표현하는 방법과 사용자에게 동기를 제공하는 UI 설계의 중요성을 경험했습니다. 또한 사용자 피드백을 반영하여 불편한 부분을 개선하는 반복적인 개발 과정을 통해 실제 서비스 개선 방식에 대해 배울 수 있었습니다. 이번 프로젝트를 통해 완성된 기능을 만드는 것보다 사용자의 문제를 해결하고 지속적으로 발전시키는 과정이 서비스 개발에서 더욱 중요하다는 것을 깨달았습니다. 앞으로도 기술 구현뿐만 아니라 사용자 경험을 함께 고려하는 개발자가 되고자 합니다.",
-    "functions": [
-      "운동 기록 저장",
-      "식단 관리",
-      "칼로리 자동 계산",
-      "주간 운동 통계",
-      "목표 달성률 확인",
-      "루틴 공유 기능"
+    "name": "MCM Time portal",
+    "team": "하이파이브",
+    "tag": "SJF",
+    "serviceimage": null,
+    "servicelink": "https://timeportal-mcm.site/",
+    "githublink": "https://github.com/hifive-LIKELIONUNIV/2026-LIKELION-UNIV.-14th-Hackathon",
+    "figmalink": null,
+    "maincontent": "-> MCM의 50년 Mobility, 이젠 공간을 넘어 시간으로",
+    "content": "TIME PORTAL은 고객의 선택에서 시작해 MCM의 50년 헤리티지를 직접 경험하고, 새로운 상품 탐색까지 이어지는 매장형 인터랙티브 서비스입니다. 첫 단계인 Choose Your MCM에서 로그인 고객은 온라인 장바구니 속 관심 상품을, 비회원 고객은 MCM의 대표 상품을 선택합니다. 이어 MCM TIME PORTRAIT에서 고객의 얼굴을 촬영해 선택 상품과 함께 체험에 반영합니다. 이후 MOVE THROUGH MCM을 통해 1976년부터 2026년까지 MCM의 시간을 이동하며, 각 시대 속 자신의 모습과 상품이 반영된 개인화된 장면을 경험합니다. 체험이 끝나면 YOUR MCM JOURNEY에서 결과를 확인하고, EXPLORE MORE MCM에서는 선택 상품의 컬러와 특성을 바탕으로 새로운 상품을 추천받습니다. 고객은 QR을 통해 직접 탐색하거나 직원 상담으로 쇼핑을 이어갈 수 있으며, 이 과정에서 발생한 선택과 행동은 다음 개인화를 위한 데이터로 연결됩니다.",
+    "function": [
+      "Choose Your MCM: 로그인 고객은 장바구니 속 관심 상품을, 비회원 고객은 대표 상품을 선택",
+      "MCM TIME PORTRAIT: 고객의 얼굴을 촬영해 선택한 상품과 함께 체험에 반영",
+      "MOVE THROUGH MCM: 1976년부터 2026년까지 시대를 이동하며, 각 시대별 개인화 이미지를 AI로 생성",
+      "YOUR MCM JOURNEY: 체험 결과를 확인하고 저장",
+      "EXPLORE MORE MCM: 선택 상품 기반으로 새 상품을 추천하고, QR 또는 직원 상담으로 연결"
     ],
-    "techStack": [
-      "Frontend: Flutter",
-      "Backend: Spring Boot",
-      "Database: MySQL",
-      "Authentication: OAuth 2.0",
-      "Deployment: AWS ECS"
-    ]
+    "techstack": [
+      "PM: Figma",
+      "DE: Notion",
+      "BE: Python, Django, Gunicorn",
+      "FE: JavaScript, React, Vite",
+      "AI: OpenAI API (gpt-image-2), OpenCV",
+      "DB: SQLite",
+      "Deploy: AWS EC2, Nginx, Let's Encrypt, GitHub Actions",
+      "Domain: Gabia",
+      "Monitoring: Sentry"
+    ],
+    "retrospect": ""
   },
   {
     "id": 6,
-    "name": "서비스6",
-    "team": "팀6",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service6.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service6",
-    "figmaLink": "https://figma.com/uhheungcon/service6",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스6",
-    "content": "서비스6는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
+    "name": "NEXTiME",
+    "team": "금연한사자처럼",
+    "tag": "AAC",
+    "serviceimage": null,
+    "servicelink": "https://next-time-eta.vercel.app/main",
+    "githublink": "https://github.com/NEXTiME-LikeLion/NextTime",
+    "figmalink": null,
+    "maincontent": "흡연 직전, 한 대를 미루고 줄일 수 있도록 돕는 IoT · AI 기반 개인화 감연 서비스",
+    "content": "NEXTiME은 흡연 욕구를 무조건 참게 하거나 실패를 꾸짖는 대신, ‘이번 한 대’를 조금 더 미룰 수 있도록 돕는 IoT · AI 기반 개인화 감연 서비스입니다. \n\n사용자가 온보딩에서 입력한 금연 동기, 되고 싶은 모습, 미래의 자신에게 남긴 말을 바탕으로 AI가 ‘NEXT ME’를 생성합니다. 흡연 욕구가 찾아오면 담배갑 형태의 IoT 기기로 즉시 앱에 접근해 NEXT TIME을 시작하고, 현재 상황을 간단히 입력합니다. 이후 NEXT ME로 처음의 목표를 떠올리게 하고, 현재 상황과 선호 행동, 과거 수행 결과를 반영한 행동 미션 하나를 제안합니다. \n\n미션 후에는 흡연 여부와 욕구 변화, 도움 정도를 기록해 다음 추천에 반영합니다. 기록이 쌓이면 흡연량과 주요 시간대뿐 아니라, 어떤 상황에서 담배를 줄일 수 있는지와 실제 도움이 된 행동까지 분석합니다. \n\n이를 바탕으로 사용할수록 개인화되는 감연 전략을 제공합니다.",
+    "function": [
+      "NEXTiME IoT 기기 — 담배갑 형태의 기기",
+      "NEXT ME — 개인화된 감연 이유 상기",
+      "NEXT TIME — 상황 기반 대체 행동 추천",
+      "내 패턴 —  흡연 패턴 분석"
     ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
+    "techstack": [
+      "PM & DE: Notion, Figma",
+      "FE : React, Vercel",
+      "BE : Spring Boot, PostgreSQL, AWS, Docker",
+      "AI : OpenAI"
+    ],
+    "retrospect": ""
   },
   {
     "id": 7,
-    "name": "서비스7",
-    "team": "팀7",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service7.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service7",
-    "figmaLink": "https://figma.com/uhheungcon/service7",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스7",
-    "content": "서비스7는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
+    "name": "AfterGrow",
+    "team": "삶이순탄쿠나",
+    "tag": "AAC",
+    "serviceimage": null,
+    "servicelink": "https://aftergrow.vercel.app/",
+    "githublink": "https://github.com/mju-jungkathon",
+    "figmalink": "https://www.figma.com/design/0NFOMuzchOzf6Itn6Ffd14/%EC%A4%91%EC%95%99%ED%86%A4-%EC%82%B6%EC%9D%B4-%EC%88%9C%ED%83%84%EC%BF%A0%EB%82%98?node-id=0-1&t=Sawie0yeDVxst1cu-1",
+    "maincontent": "러닝 중 자외선과 심박수를 측정해, 러닝 직후 AI 맞춤 스킨케어 회복 가이드를 주는 앱",
+    "content": "러닝 인구가 늘면서 \"몸은 건강해지는데 얼굴은 늙어 보인다\"는 Runner's Face 문제가 생겼습니다. 원인은 러닝이 아니라 자외선 노출과 운동 부담이 수치로 드러나지 않는 데 있습니다.\n\nAfterGrow는 러닝 중 자외선과 심박수를 측정해, 러닝 직후 AI가 맞춤 스킨케어 회복 가이드를 제시하는 러닝×스킨케어 회복 앱입니다. 자외선은 순간 지수가 아닌 '노출량 = 지수 × 러닝 시간'으로 누적 부담을 등급화하고, 여기에 운동 강도·거리·심박수를 더해 그날의 피부 위험도를 산정합니다. 위험도가 높을수록 케어 항목과 설명을 늘려, 수분·세안·보습·심박 진정·자외선 케어·홍조 진정 6개 중 3~5개를 이유와 순서를 붙여 제시합니다.\n\n심박수는 후면 카메라 기반 rPPG로 손가락만 대면 12초 만에 측정돼 스마트워치가 없어도 되고, 워치가 있다면 애플워치 연동도 가능합니다.\n\n측정에서 끝나는 기존 서비스와 달리, AfterGrow는 판단까지 대신 내려 회복을 실제 행동으로 잇습니다.",
+    "function": [
+      "AI 스킨케어 회복 가이드 — 서비스의 중심 기능",
+      "자외선 노출량 측정",
+      "심박수 측정 — 두 경로 제공",
+      "쿨다운 타이머",
+      "러닝 기록",
+      "홈 대시보드",
+      "접근성 — 웹과 네이티브 병행"
     ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
+    "techstack": [
+      "DE: ManyFast, Figma",
+      "BE: Java, SpringBoot",
+      "FE: React, Vite, JS, Capacitor",
+      "DB: PostgreSQL, Redis, Flyway",
+      "AI: OpenAI API",
+      "Deploy: Docker Compose, GitHub Action, Vercel, IOS 실기기"
+    ],
+    "retrospect": ""
   },
   {
     "id": 8,
-    "name": "서비스8",
-    "team": "팀8",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service8.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service8",
-    "figmaLink": "https://figma.com/uhheungcon/service8",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스8",
-    "content": "서비스8는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
+    "name": "RE:FIT",
+    "team": "왕꿈트리",
+    "tag": "AAC",
+    "serviceimage": null,
+    "servicelink": "https://www.refit.live",
+    "githublink": "https://github.com/KingDreamTree",
+    "figmalink": "https://www.figma.com/design/YJYg8xxpZHs6zTRBiHhEbH/-%EC%A4%91%EC%95%99%ED%95%B4%EC%BB%A4%ED%86%A4--2%ED%8C%80?node-id=0-1&t=0sUqow39ZkoINQ5p-1",
+    "maincontent": "원하는 몸과 현재 체형을 비교해 맞춤 운동을 설계하는 AI 피트니스 서비스",
+    "content": "RE:FIT은 사용자가 원하는 체형의 레퍼런스 이미지와 현재 자신의 체형을 비교·분석해, 목표 체형에 가까워지기 위한 맞춤 운동 방향과 루틴을 제공하는 AI 피트니스 서비스입니다. 사용자가 레퍼런스 이미지와 자신의 체형 사진을 업로드하면 AI가 신체 부위별 차이를 분석하고, InBody 및 WIM 데이터를 함께 반영해 개선 우선순위를 도출합니다. 이후 분석 결과를 바탕으로 개인 맞춤형 운동 루틴을 제공하며, 운동 후 자연어 피드백까지 반영해 다음 운동의 강도와 구성을 지속적으로 조정합니다.",
+    "function": [
+      "부위별 체형 비교·진단",
+      "개인 맞춤형 운동 루틴 생성",
+      "자연어 기반 운동 피드백"
     ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
+    "techstack": [
+      "PM: Notion, Figma, GitHub, Discord, Manifast",
+      "DE: Figma",
+      "FE: React, TypeScript",
+      "BE: Python, FastAPI",
+      "AI: Sapiens2, OpenCV, MediaPipe, PyTorch, GPT API",
+      "DB: Supabase",
+      "Deploy: Vercel, AWS"
+    ],
+    "retrospect": ""
   },
   {
     "id": 9,
-    "name": "서비스9",
-    "team": "팀9",
+    "name": "눈눈(NUNNUN)",
+    "team": "이리저리",
     "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service9.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service9",
-    "figmaLink": "https://figma.com/uhheungcon/service9",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스9",
-    "content": "서비스9는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
+    "serviceimage": null,
+    "servicelink": null,
+    "githublink": "https://github.com/IRI-JEORI/project-backend-uhheung",
+    "figmalink": "https://www.figma.com/design/iuTANnyHlwzIpRSY7Bt681/%EB%A9%8B%EC%82%AC-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8?node-id=908-4999&p=f&t=T0r7PTyh9CRZdH2s-0",
+    "maincontent": "친구와 함께 서로를 깨우고 인증하며 기상 습관을 만들어가는 소셜 기상 관리 서비스, 눈눈",
+    "content": "저희의 서비스 눈눈은 알람을 끈 뒤 다시 잠드는 문제에 주목한 소셜 기상 관리 서비스입니다. 친구와 서로를 깨우고 기상을 인증하며 함께 기상 습관을 만들어가게 됩니다. 서비스의 핵심 구조는 우선 사용자가 친구들과 그룹을 만들어 목표 기상 시간과 기상 상태를 공유합니다. 다음으로 친구에게 깨우기 요청을 보내면 상대방의 휴대폰에서 알람이 울립니다. 그렇게 알람을 받은 친구는 제시된 포즈를 따라 사진을 촬영합니다. 마지막으로 AI가 포즈 일치도를 판정하며, 인증에 성공해야 알람이 꺼집니다. 인증에 실패하면 다시 촬영해야 합니다. 서로의 기상 모습을 확인하고 함께 하루를 시작하는 경험을 통해 꾸준한 기상 습관을 만들어보세요.",
+    "function": [
+      "그룹 생성 및 참여",
+      "목표 기상 시간 및 기상 상태 공유",
+      "친구 깨우기",
+      "AI 포즈 인증",
+      "셀프 기상 인증",
+      "인증 사진 공유"
     ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
+    "techstack": [
+      "PM: Manifast, Notion, Figma, FigJam, Discord, Github",
+      "DE: Figma, Adobe Illustrator, Adobe Photoshop",
+      "Deploy: React Native, AWS, Spring Boot, MySQL",
+      "AI: ChatGPT, Claude"
+    ],
+    "retrospect": ""
   },
   {
     "id": 10,
-    "name": "서비스10",
-    "team": "팀10",
+    "name": "momote",
+    "team": "수상한 아기사자들",
     "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service10.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service10",
-    "figmaLink": "https://figma.com/uhheungcon/service10",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스10",
-    "content": "서비스10는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
+    "serviceimage": null,
+    "servicelink": "https://www.momote.site/",
+    "githublink": "https://github.com/2026-likelion-ssu-hackathon",
+    "figmalink": null,
+    "maincontent": "감정을 읽고, 대화를 돕는 AI 기반 커플 메신저",
+    "content": "momote(moment & moment together)는 커플의 대화 맥락을 AI가 실시간으로 분석해 감정·관계 상태를 시각화하고, 필요한 순간에만 대화를 돕는 AI 기반 커플 메신저입니다. 채팅방 상단의 '실'이 두 사람의 지금 감정을 상시 보여주고, 그 아래 한 줄에는 필요할 때만 개입 카드(말투 교정·데이트 코스·영상 추천)가 뜹니다. 대화 스트림에는 봇 메시지를 넣지 않아 채팅은 온전히 둘만의 공간으로 남고, 지적성 피드백은 보낸 사람에게만 보여 상대에게 노출되지 않습니다. 핵심 원칙은 \"내가 눈치채기 전에 먼저 눈치채고 조용히 회복시킨다\"입니다. 그래서 '권태기 같아요', '대화가 줄었어요'처럼 관계 상태를 규정하는 말은 절대 출력하지 않도록 감지 로직과 발화 로직을 분리했고, AI 문장뿐 아니라 외부에서 가져온 장소명·영상 제목까지 금지어 필터를 거쳐야 화면에 나갑니다.",
+    "function": [
+      "실시간 감정 표현 : 대화 맥락을 분석해 두 사람의 감정 상태(평온·다정·서운·신남·격앙)를 채팅방 상단 '실의 움직임'으로 상시 시각화",
+      "말투 교정 : 공격적·오해 유발 표현을 보낸 사람에게만, 나 전달법 대체 문장과 '왜 그렇게 읽히는지'를 함께 제시",
+      "맞춤형 데이트 코스 추천 : 데이트 의도가 감지되면 대화 속 취향·장소 단서로 검색어를 만들고 카카오 로컬 API의 실재 장소 3곳(밥→구경→카페)을 코스로 제시",
+      "유튜브 영상 추천 : 관계 고민 신호가 감지되면 고민 유형을 분류하고, 상황에 맞는지 검증한 유튜브 영상 1개를 추천 근거와 함께 제시"
     ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
+    "techstack": [
+      "PM: Notion",
+      "DE: Figma",
+      "BE: Spring Boot",
+      "FE: React, Vite, Tailwind css",
+      "AI: Python, OpenAI, FastAPI, LangChain",
+      "DB: PostgreSQL",
+      "Deploy: Railway, Vercel"
+    ],
+    "retrospect": ""
   },
   {
     "id": 11,
-    "name": "서비스11",
-    "team": "팀11",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service11.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service11",
-    "figmaLink": "https://figma.com/uhheungcon/service11",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스11",
-    "content": "서비스11는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
+    "name": "MXIS",
+    "team": "더버버",
+    "tag": "SJF",
+    "serviceimage": null,
+    "servicelink": null,
+    "githublink": "https://github.com/Likelion14th-AnimalLeague-Team03",
+    "figmalink": null,
+    "maincontent": "구매 이후 경험을 혁신하는 AI 럭셔리 가죽 제품 케어 서비스",
+    "content": "MXIS는 AI와 MXIS Charm을 통해 제품의 사용 환경을 기록하고, 필요한 관리와 브랜드 케어까지 연결하는 럭셔리 가죽 제품 케어 서비스입니다.  \n\n센서가 내장된 전용 액세서리 MXIS Charm이 온도·습도·충격 등 제품의 실제 사용 환경을 자동 기록하고, AI가 제품 정보와 누적 데이터를 분석해 개인화된 관리 가이드와 적절한 케어 시점을 제안합니다. \n관리가 필요한 시점에는 예방 차원의 무상 매장 케어 혜택을 제공하며, 필요 시 앱에서 MCM 매장 컨시어지 예약까지 간편하게 연결합니다.\n\n이를 통해 구매 이후의  케어 공백을 새로운 브랜드 접점으로 전환하고 고객과 브랜드의 관계가 제품과 함께하는 시간 전체로 확장되는 럭셔리 경험을 제공합니다.",
+    "function": [
+      "케어 진단",
+      "관리 가이드",
+      "컨시어지 예약"
     ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
+    "techstack": [
+      "PM: Manifest, Notion, Figma, Discord, GitHub",
+      "DE: Figma",
+      "FE: TypeScript, React Native, Tailwind CSS, Zustand, React Native BLE PLX",
+      "BE: Java, Spring Boot, Spring Security, JWT, Spring Data JPA, MariaDB, Flyway, Docker, Oracle Cloud Infrastructure (OCI)",
+      "AI: Python, OpenAI API",
+      "BLE: React Native BLE PLX, Nordic UART Service",
+      "Embedded/IoT: Arduino, Orange Board BLE, DHT11, MPU6050, C/C++"
+    ],
+    "retrospect": ""
   },
   {
     "id": 12,
-    "name": "서비스12",
-    "team": "팀12",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service12.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service12",
-    "figmaLink": "https://figma.com/uhheungcon/service12",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스12",
-    "content": "서비스12는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
+    "name": "SKINEARTH",
+    "team": "SKINEARTH",
+    "tag": "AAC",
+    "serviceimage": null,
+    "servicelink": "https://skinearth.vercel.app/",
+    "githublink": "https://github.com/SKINEARTH",
+    "figmalink": null,
+    "maincontent": "내 피부에도 기후가 있다! 생활 환경과 피부 상태의 숨은 인과관계를 찾는 스킨케어 서비스",
+    "content": "내 피부에도 기후가 있다!\n\n\"냉난방으로 인해 피부 건조함을 느껴 본 적 있으신가요?\"\n\n저희는 이 한 줄의 질문에서 출발하였습니다.\n우리는 냉난방, 스크린타임, 수면과 같은 일상 변수가 내 피부에 어떤 영향을 주는지 데이터로 확인해 본 적이 없습니다. 기존 스킨케어 서비스는 피부 상태를 진단하고 제품을 추천하는 데 그칠 뿐, 주변 환경에서 원인을 찾아 결과와 연결해주지는 못했습니다. 재발 방지를 위한 나만의 원인-대응 전략을 세우기는 어려운 구조입니다.\n\nSKINEARTH는 여기에서 출발합니다. 우리는 피부를 하나의 작은 행성으로, 반복되는 트러블 문제를 그 행성의 기후 문제로 바라봅니다. 지구온난화의 원인을 개인이 완전히 통제할 수 없듯, 피부 문제의 원인도 완전히 없애기는 어렵습니다.\n그래서 SKINEARTH는 원인을 없애 주겠다고 약속하지 않고, 사용자가 피부 문제의 원인을 스스로 규명하고 그에 맞는 완화·적응 전략을 찾아가도록 돕는 기록 기반 웰니스 서비스를 지향합니다.",
+    "function": [
+      "피부 온도 지수 (홈)",
+      "궤도 관측 로그",
+      "내일의 궤도 예보",
+      "탐사 미션",
+      "궤도 히스토리"
     ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
+    "techstack": [
+      "PM: Notion, Manifast, Figma",
+      "FE: React + Vite, JavaScript",
+      "BE: Spring Boot",
+      "AI: Gemini API",
+      "DB: MySQL",
+      "Deploy: Vercel, Railway"
+    ],
+    "retrospect": ""
   },
   {
     "id": 13,
-    "name": "서비스13",
-    "team": "팀13",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service13.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service13",
-    "figmaLink": "https://figma.com/uhheungcon/service13",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스13",
-    "content": "서비스13는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
+    "name": "SOTT",
+    "team": "영크크 말고 봉크크",
+    "tag": "AAC",
+    "serviceimage": null,
+    "servicelink": "https://www.sott.site/",
+    "githublink": "https://github.com/NO-YCC-YES-BCC",
+    "figmalink": null,
+    "maincontent": "AI Skip-Care 서비스, SOTT",
+    "content": "SOTT는 지금 쓰는 화장품들 사이에서 겹치는 성분을 찾아주고, 남은 제품으로 아침·저녁 루틴을 짜주는 서비스입니다. 한국 여성은 스킨케어 제품을 평균 6개 동시에 쓰지만, 그 제품들이 정말 서로 다른 역할을 하는지는 아무도 확인하지 않습니다. 전성분은 수십 개씩 작게 적혀 있고, 같은 성분도 \"나이아신아마이드\"와 \"Niacinamide\"처럼 제품마다 표기가 달라 눈으로 대조하기 어렵습니다.\n\n사용자는 제품명이나 브랜드로 가진 제품을 검색해 담기만 하면 됩니다. SOTT는 성분 22,904건·이명 25,395건 색인에 연결된 제품 DB를 바탕으로, 같은 카테고리 안의 제품끼리 공통 성분을 비교해 중복을 짚고, 남은 제품을 아침·저녁 루틴에 배치합니다. 새 제품을 사기 전에는 지금 루틴과 겹치는지도 미리 확인할 수 있습니다.\n\n농도까지는 알 수 없기에 \"빼라\"가 아니라 \"다시 볼 지점\"으로 제시하고, 효능이나 안전성은 판단하지 않고 성분 사실과 비교만 전달합니다.",
+    "function": [
+      "제품 검색으로 내 화장품 담기: 사진 없이 제품명·브랜드로 검색해 등록",
+      "표기가 달라도 같은 성분 매칭: 성분 22,904건·이명 25,395건 색인 기반",
+      "카테고리별 성분 겹침 분석: 같은 대분류 제품끼리만 공통 성분 비교",
+      "아침·저녁 루틴 설계: 남은 제품을 사용 순서대로 배치, 직접 수정 가능",
+      "구매 전 궁합 확인: 사려는 제품이 지금 루틴과 겹치는지 미리 확인"
     ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
+    "techstack": [
+      "PM: Notion",
+      "DE: Figma",
+      "BE: Java, Springboot",
+      "FE: JS, HTML, CSS, React, Vue",
+      "DB: MariaDB",
+      "Depoy: OCI, Docker, Github action, Vercel"
+    ],
+    "retrospect": ""
   },
   {
     "id": 14,
-    "name": "서비스14",
-    "team": "팀14",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service14.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service14",
-    "figmaLink": "https://figma.com/uhheungcon/service14",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스14",
-    "content": "서비스14는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
+    "name": "AURA",
+    "team": "AURA",
+    "tag": "SJF",
+    "serviceimage": null,
+    "servicelink": null,
+    "githublink": "https://github.com/14th-Hackathon-AURA/AURA-FE",
+    "figmalink": null,
+    "maincontent": "명품을 처음 구입하는 사람을 위한 웹 서비스로, 구매부터 소유까지의 과정을 통괄합니다.",
+    "content": "AURA는 명품을 처음 구입하는 사람을 위한 웹 서비스입니다.\n\n무엇을 살지 상담하는 단계부터, 구매 내역을 기록하고, 상태를 관리하고, 같은 물건을 가진 사람들과 정보를 나누는 단계까지를 하나의 어플에서 이어지는 플로우로 설계했습니다.\n\n문제의 성격은 여기서 갈립니다. 흔히 진입 장벽을 가격 탓으로 돌리지만, 입문자가 실제로 멈춰 서는 지점은 값이 아니라 판단의 부담이라고 생각합니다.\n\n1. 먼저, 실제로 명품 구매자가 정보를 찾는 경로 1위는 SNS로 38.5%인데, 이때 가짜 정보와 실제 후기가 구분하기는 어렵습니다.\n2. 또한 매장이 전체 매출의 81%를 차지하지만 소비자의 80%는 지금의 표준화된 매장 경험을 원하지 않는다고 답합니다. 피할 수 없는 공간이 동시에 가장 부담스러운 공간인 셈입니다.\n3. 구매 한 뒤에도, 내가 가진 명품을 지속적으로 상기해주는 인터렉션은 존재하지 않고, 케어 시기를 놓치기 일쑤입니다.\n\n따라서 AURA는 명품의 생애주기를 탐색, 구매, 소유, 지속 네 구간으로 나누고, 각 구간에서 비어 있던 역할을 맡기로 했습니다. 사기 전에는 취향과 예산을 물어 후보를 좁히는 상담자가 되고, 살 때는 영수증 한 장을 소유 기록으로 바꾸며, 산 뒤에는 상태를 진단해 관리 시점을 먼저 알려 줍니다. 그리고 그 기록을 가진 사람들만 모인 공간에서 다음 입문자가 믿고 참고할 정보가 쌓이도록 만듭니다.\n\nAURA가 목표하는 것은 처음 산 한 사람이 그 물건을 오래 잘 쓰도록 만들고, 브랜드와 지속적인 접점을 만들어 재구매 고객으로 유치하는 것입니다.",
+    "function": [
+      "AI 챗봇: 취향과 상황, 예산을 묻는 대화를 거쳐 첫 명품 후보를 좁혀 줍니다.",
+      "디지털 클로젯: 영수증이나 보증서를 촬영하면 OCR이 브랜드와 모델명, 구매일 등의 정보를 읽어 제품 데이터와 대조한 뒤 정식 명칭으로 보정해 카드 형태로 저장",
+      "AI 케어 매니저: 촬영 가이드에 맞춰 사진을 찍으면 안전-주의-위험 세 단계로 상태를 진단하고, 손상이 의심되는 부위를 짚은 뒤 소재별 관리법과 가까운 매장을 안내",
+      "멤버십과 커뮤니티"
     ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
+    "techstack": [
+      "기획디자인: Manifast, Notion, Figma, Adobe Illustrator, Adobe Photoshop",
+      "개발: React, Django, PostgreSQL, AWS, Docker, nginx, Vercel",
+      "AI: ChatGPT"
+    ],
+    "retrospect": ""
   },
   {
     "id": 15,
-    "name": "서비스15",
-    "team": "팀15",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service15.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service15",
-    "figmaLink": "https://figma.com/uhheungcon/service15",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스15",
-    "content": "서비스15는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
+    "name": "HALE",
+    "team": "오리스웰",
+    "tag": "AAC",
+    "serviceimage": null,
+    "servicelink": "https://hale-zeta.vercel.app/",
+    "githublink": "https://github.com/duckswell",
+    "figmalink": null,
+    "maincontent": "HALE은 여드름 시술 후 매일 달라지는 피부를 AI로 분석해, 오늘 필요한 애프터케어 루틴을 알려주는 서비스입니다.",
+    "content": "HALE(헤일)은 여드름 시술 후 매일 달라지는 피부 상태를 AI로 분석해, 사용자가 집에서도 자신의 회복 단계에 맞는 애프터케어를 실천하도록 돕는 서비스입니다. 사용자가 시술 종류, 부위, 날짜를 등록하고 얼굴 사진과 붉은기, 건조함, 따가움 등 증상을 기록하면, AI가 피부 상태와 전날 대비 변화를 분석해 오늘 필요한 관리 강도와 성분 중심 루틴을 제안합니다. 시술 후 7일까지는 집중 코스를 통해 붉은기와 트러블 변화를 비교하며 회복 단계에 맞는 관리를 제공하고, 이후에는 쿨다운, 클리어업, 피지 컨트롤, 수분 충전 등 피부 고민별 데일리 코스로 이어집니다. 홈에서는 당일 날씨와 회복 상태를 반영한 체크리스트를 제공하고, 완료한 루틴과 AI 코멘트, 지난 관리 이력은 마이페이지에 누적됩니다. HALE은 단순히 피부 상태를 보여주는 데 그치지 않고, “그래서 오늘 무엇을 해야 하지?”에 구체적인 행동으로 답하며, 시술 당일에 끝났던 병원과 사용자의 접점을 회복 관리까지 연결합니다.",
+    "function": [
+      "AI 기반 피부 변화 분석 및 전날 비교",
+      "시술 정보·회복 단계 기반 7일 집중 코스",
+      "피부 고민별 맞춤 데일리 코스",
+      "맞춤 성분·스킨케어 순서·제품 추천",
+      "날씨 기반 생활관리 체크리스트",
+      "루틴 강도 선택 및 연속 관리 기록",
+      "이상 증상 감지 및 클리닉 상담 안내"
     ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
+    "techstack": [
+      "PM: Notion, Manifast, Figma, FigJam ,Discord",
+      "DE: Figma, Adobe Illustrator, Adobe Photoshop",
+      "BE: Gabia, Spring Boot, MySQL, OpenCV, MediaPipe",
+      "FE: React, TypeScript",
+      "AI: ChatGPT, Claude",
+      "Deploy: Vercel, AWS, S3 ,Nginx, Docker, RDS"
+    ],
+    "retrospect": ""
   },
   {
     "id": 16,
-    "name": "서비스16",
-    "team": "팀16",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service16.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service16",
-    "figmaLink": "https://figma.com/uhheungcon/service16",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스16",
-    "content": "서비스16는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
+    "name": "CLOSER",
+    "team": "초코숭이",
+    "tag": "SJF",
+    "serviceimage": null,
+    "servicelink": "https://www.mcm-showcase.com/my-closet",
+    "githublink": "https://github.com/sunguk0410/mcm-showcase-backend",
+    "figmalink": null,
+    "maincontent": "고객의 쇼핑 데이터를 연결해 개인화된 브랜드 경험을 만드는 인터랙티브 리테일 플랫폼",
+    "content": "CLOSER는 오프라인 매장에서 발생하는 고객의 행동 데이터를 개인화된 쇼핑 경험으로 연결하는 인터랙티브 리테일 플랫폼입니다. 매장 내 동선과 체류 데이터를 통해 고객의 관심을 파악하고, 이를 AR 피팅에서 발생하는 상품 선택·피팅·찜 데이터와 결합해 현재 취향에 맞는 상품을 추천합니다. 고객의 새로운 선택이 쌓일수록 추천 역시 실시간으로 업데이트됩니다. 방문 중 형성된 취향과 경험은 AI 아바타와 디지털 클로젯에 기록되어 온라인 쇼핑과 다음 매장 방문까지 이어집니다. 이를 통해 고객에게는 자신을 이해하고 기억하는 브랜드 경험을, 브랜드에는 오프라인 고객 행동을 이해하고 활용할 수 있는 새로운 접점을 제공합니다.",
+    "function": [
+      "매장 동선·체류 분석 : 고객의 층별 이동과 체류 구역을 분석해 현재 관심 상품군과 쇼핑 맥락 파악",
+      "개인화 AR 피팅 : 동선 및 관심 데이터를 기반으로 고객이 관심 가질 상품을 제안하고 가상 피팅 경험 제공",
+      "실시간 추천 업데이트 : 상품 선택·피팅·찜 등 새로운 행동이 발생할 때마다 현재 취향을 반영해 추천 고도화",
+      "AI 쇼핑 컨시어지 : 고객의 탐색 및 피팅 데이터를 바탕으로 다음 상품이나 쇼핑 동선을 자연스럽게 제안",
+      "AI 스타일 아바타 : 방문 중 축적된 선택과 취향 데이터를 기반으로 고객의 ‘오늘의 스타일’을 시각화",
+      "디지털 마이클로젯 : 피팅·찜·아바타 등 매장 경험을 저장해 방문 이후 온라인에서도 탐색과 쇼핑 지속",
+      "온오프라인 경험 연결 : 저장된 고객 경험을 다음 방문에 다시 활용해 일회성 방문을 지속적인 브랜드 관계로 확장"
     ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
+    "techstack": [
+      "FE : React, JavaScript, HTML, CSS",
+      "Build / Routing : Vite, React Router DOM",
+      "BE : Java, Spring Boot, JPA",
+      "AI / Recommendation : Python, FastAPI, RecRec, OpenAI API, FLUX API",
+      "Computer Vision : YOLO, OpenCV, MediaPipe, PyTorch",
+      "Deployment / DevOps : AWS EC2, AWS ECR, Docker, GitHub Actions, Vercel"
+    ],
+    "retrospect": ""
   },
   {
     "id": 17,
-    "name": "서비스17",
-    "team": "팀17",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service17.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service17",
-    "figmaLink": "https://figma.com/uhheungcon/service17",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스17",
-    "content": "서비스17는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
+    "name": "AURA",
+    "team": "독수리 6형제",
+    "tag": "SJF",
+    "serviceimage": null,
+    "servicelink": "https://aura-frontend-dun.vercel.app/",
+    "githublink": "https://github.com/jiyoung0531/aura-frontend",
+    "figmalink": "https://www.figma.com/design/tVEoiCgs7JZPyP904TxNyj/AURA?node-id=1-2&t=iQtpKIDF3E11ysY8-1",
+    "maincontent": "매장 방문객의 착장을 읽어 단 하나뿐인 MCM 가방을 만드는  AI 인터랙티브 미러",
+    "content": "AURA는 럭셔리 브랜드가 도입하는 B2B 리테일 솔루션으로, 매장 방문객의 착장을 AI가 읽어 그 사람만의 MCM 가방을 만들고 이를 모바일 구매까지 연결하는 O2O 인터랙티브 미러입니다. 거울 앞에 서면 AI가 옷의 실루엣과 질감, 색에서 컬러 팔레트와 무드를 추출하고, 그 결과가 거대한 3D 가방으로 실시간 렌더링됩니다. 화면에서 사용하는 가상의 손이 닿는 지점의 음영과 소재별 사운드, 손 커서의 속도 변화가 결합되어 가죽과 금속의 질감이 느껴지는 촉각 착시가 일어납니다. 손을 모아 아우라를 주입하면 비세토스 패턴이 무드에 따라 변형되고, 악세서리를 골라 나만의 가방을 완성합니다. 체험이 끝나면 QR로 체험 영상과 디지털 보증서 Soul Tag를 고객의 폰에서 조회하고, 실제 제품 구매 링크를 통해 구매까지 연결됩니다.\n이 과정에서 매장 방문객이 각 소재에 머문 시간, 가방 회전시킨 각도 등의 데이터가 기록되어, 브랜드는 구매 이전 단계의 제로파티 데이터를 확보하게 됩니다.",
+    "function": [
+      "AI 착장 분석",
+      "대형 스케일 MCM 가방 3D 렌더링",
+      "비접촉 촉각 착시 - 시각, 청각, 속도 변조 3축",
+      "Intent 신호 수집",
+      "O2O 파이프라인 - 페험 영상, Soul Tag(디지털 보증서), 구매 링크"
     ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
+    "techstack": [
+      "PM: Notion, FigJam, Discord, GitHub",
+      "DE: Figma, Adobe Illustrator, Adobe Photoshop, Blender",
+      "FE: HTML, CSS, Java Script, React, Three.js, MediaPipe",
+      "BE: Java, Spring Boot",
+      "AI: Open AI GPT4o-mini",
+      "DB: MySQL, TiDB",
+      "Deploy: Vercel, GCP, Docker, GitHub Actions"
+    ],
+    "retrospect": ""
   },
   {
     "id": 18,
-    "name": "서비스18",
-    "team": "팀18",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service18.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service18",
-    "figmaLink": "https://figma.com/uhheungcon/service18",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스18",
-    "content": "서비스18는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
+    "name": "TagonAI",
+    "team": "사춘기온사자",
+    "tag": "SJF",
+    "serviceimage": null,
+    "servicelink": "https://www.tagonai.site/",
+    "githublink": "https://github.com/SAONLION",
+    "figmalink": "https://www.figma.com/design/JAefIL7IQfgk7aZZNOd4Ke/헤커톤--사춘기온사자-?node-id=512-125&t=je7UhkgqCzO62E9t-1",
+    "maincontent": "매장 내 고객의 이탈 요인 데이터를 수집하고, 구매 저해 요인을 즉시 완화해 주는 서비스입니다.",
+    "content": "TagonAI는 매장을 방문하고도 구매하지 않고 떠나는 잠재 고객(방문객의 55~75%)의 이탈 원인을 매장 안에서 데이터로 남기는 AI 가이드북 서비스입니다. 제품 앞 NFC 태그로 여는 디지털 가이드북에서 고객의 열람·비교 행동이 익명 세션 로그로 쌓이고, 이를 벡터화해 실시간 초개인화 추천과 구매 전환 방해 요인(가용성·응대·가격 저항 등 6개 카테고리) 감지 및 선제적 조치까지 자동 수행합니다. 기존 데이터가 있는 '기존 고객'만 다루는 클리엔텔링 SaaS와 달리, 데이터가 전혀 없던 '잠재 고객' 구간을 데이터화하는 상류 레이어를 공략하는 것이 차별점입니다. 매장당 월 100만원 구독(ARR 1,200만원) 모델이며, MCM 청담 플래그십에서 8주 동안 파일럿 테스트를 진행한 후 다른 매장까지 확산을 목표로 하고 있습니다.",
+    "function": [
+      "NFC 태그 & 디지털 가이드북: 제품 앞 태그 한 번으로 제품 정보 열람",
+      "실시간 개인화 추천: 세션 맥락 기반 실시간 제품 매칭",
+      "익명 세션 로그 수집: 열람·비교 행동을 데이터로 축적",
+      "구매 전환 방해 요인 감지 & 선제적 조치: 가용성·응대·가격 저항 등 6개 구매 저해 요인 카테고리 자동 대응",
+      "나만의 여권 콘텐츠: 열람 기록 저장 및 재방문 유도",
+      "직원용 클리엔텔링 대시보드: 실시간 고객 신호 기반 응대 지원"
     ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
+    "techstack": [
+      "PM: Figma, notion",
+      "Design: Figma, blender",
+      "FE: React, TypeScript, Vite, Three.js",
+      "BE: Spring boot / MySQL / Flyway"
+    ],
+    "retrospect": ""
   },
   {
     "id": 19,
-    "name": "서비스19",
-    "team": "팀19",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service19.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service19",
-    "figmaLink": "https://figma.com/uhheungcon/service19",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스19",
-    "content": "서비스19는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
+    "name": "MCM LOUNGE",
+    "team": "되면 천재 안되면 쩔수",
+    "tag": "SJF",
+    "serviceimage": null,
+    "servicelink": "https://mcmlounge.netlify.app/",
+    "githublink": "https://github.com/Binteum-14",
+    "figmalink": "https://www.figma.com/design/3siXU8cPCUgaeWdvZ1DVqz/%ED%95%B4%EC%BB%A4%ED%86%A4?node-id=537-1116&p=f&t=1wdvgSCpZCHvKt41-0",
+    "maincontent": "온라인 접점부터 오프라인 경험까지 AI로 연결하는 새로운 럭셔리 여정",
+    "content": "MCM Lounge는 명품 브랜드가 낯선 20~30대가 구매 전 브랜드 경험부터 제품 탐색, 오프라인 방문, 구매 후 관리까지 자연스럽게 이어갈 수 있도록 설계한 디지털 브랜드 라운지입니다. Focus Lounge는 공항 테마 라운지와 MCM 라운지를 배경으로, 간식을 선택하면 MCM 제품을 볼 수 있게 하여 자연스럽게 경험하게 하고, MCM Check는 설문을 바탕으로 추천 제품을 선정하고 AI 를 통해 사용자가 이해하기 쉽도록 추천 이유를 제안합니다. 추천 결과는 QR 기반 Visit Pass로 저장되어 실제 매장 상담으로 이어집니다. 마지막으로 Owner Lounge에서는 My Passport와 AI 케어 챗봇을 통해 구매 이후의 관계를 지속되도록 합니다.",
+    "function": [
+      "Focus Lounge: 집중 타이머·공간 사운드·여행 콘텐츠 기반의 몰입형 브랜드 체험",
+      "AI 수납 시뮬레이션: 가방별 수납 가능 여부·수납률·적합도 및 X-ray 이미지 제공",
+      "MCM Check: 설문 결과를 활용한 개인 맞춤형 제품 추천과 추천 근거 안내",
+      "Visit Pass: 추천 제품과 진단 결과를 QR 패스로 발급하여 오프라인 상담과 연결",
+      "My Passport: 발급받은 Visit Pass와 Focus Pass를 한곳에서 보관하고 다시 확인",
+      "Owner Lounge: AI 케어 챗봇을 통한 제품 관리·보관 방법 안내"
     ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
+    "techstack": [
+      "기획 : Notion, Figma, Discrd, GitHub",
+      "디자인 : Figma",
+      "개발 : React, Spring Boot, PostgreSQL, Redis, AWS",
+      "AI : ChatGPT"
+    ],
+    "retrospect": ""
   },
   {
     "id": 20,
-    "name": "서비스20",
-    "team": "팀20",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service20.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service20",
-    "figmaLink": "https://figma.com/uhheungcon/service20",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스20",
-    "content": "서비스20는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
+    "name": "LOOK&MEET",
+    "team": "멋크크",
+    "tag": "SJF",
+    "serviceimage": null,
+    "servicelink": null,
+    "githublink": "https://github.com/likelion-MKK/mkk-hackathon-project",
+    "figmalink": null,
+    "maincontent": "고객이 취향을 직접 설명하지 않아도 비언어적 반응을 분석해 MCM 상품을 맞춤 탐색·추천하는 AI 개인화 서비스",
+    "content": "LOOK & MEET은 고객이 자신의 취향을 직접 설명하지 않아도 시작되는 MCM 맞춤형 AI 상품 탐색 서비스입니다. 고객이 매장 키오스크에서 MCM 룩북을 시청하면 시선 반응을 분석하고, 이를 MCM 상품의 디자인·소재·스타일 정보와 결합해 AI가 개인별 상품을 추천합니다. 리팩토링을 통해 추천 후보 상품을 20개로 확대하고, 더 빠른 LLM을 적용해 추천 대기 시간을 줄였습니다. 또한 게임형·상호작용형 시선 보정 과정을 도입해 기존의 지루한 보정 경험을 개선했습니다. 추천 이후에는 매니저에게 실제 상품을 요청해 착용·비교까지 이어갈 수 있습니다.",
+    "function": [
+      "룩북 시청 중 실시간 시선 분석",
+      "영상 속 상품 구간과 시선 데이터 매칭",
+      "저지연 LLM 기반 AI 맞춤 상품 추천",
+      "MCM 상품 기반 개인화 추천",
+      "시선 근거를 활용한 추천 이유 제공",
+      "추천 상품 상세 정보 및 공식 페이지 연결",
+      "시선 데이터 부족 시 추천 예외 처리",
+      "원본 카메라 데이터 비저장 및 세션 종료 후 폐기"
     ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
+    "techstack": [
+      "PM: Notion, Github, Discord",
+      "BE: supabase, python",
+      "FE: JS,HTML,CSS",
+      "Deploy: 애니멀리그 - Gabia, 어흥콘 - 로컬 환경"
+    ],
+    "retrospect": ""
   },
   {
     "id": 21,
-    "name": "서비스21",
-    "team": "팀21",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service21.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service21",
-    "figmaLink": "https://figma.com/uhheungcon/service21",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스21",
-    "content": "서비스21는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
+    "name": "MCM PORTAL",
+    "team": "가천미인",
+    "tag": "SJF",
+    "serviceimage": null,
+    "servicelink": "https://mcmportal.duckdns.org",
+    "githublink": "https://github.com/likelion-gachon1/sjf_track",
+    "figmalink": null,
+    "maincontent": "AI로 나에게 어울리는 MCM World를 경험하는 인터랙티브 리테일 서비스",
+    "content": "MCM PORTAL은 매장에서 제품을 보는 경험을 ‘나에게 어울리는 모습을 경험하는 과정’으로 확장하는 AI 인터랙티브 리테일 서비스입니다. 고객이 실제 MCM 제품을 착용하고 원하는 여행 스타일을 선택하면, AI가 착장의 색과 톤을 분석해 무드를 판정하고 제품 컬러와 함께 반영해 어울리는 MCM World를 매칭합니다. 고객과 실제 제품은 그대로 유지한 채 주변 공간만 변화시켜 다양한 장소와 분위기 속에서 제품을 사용하는 자신의 모습을 경험할 수 있습니다. 체험 후에는 QR을 통해 촬영 사진과 체험 제품을 모바일에서 다시 확인하고 공식 제품 페이지로 이동할 수 있어, 매장에서 형성된 관심을 체험 이후의 제품 탐색까지 연결합니다.",
+    "function": [
+      "AI 착장 무드 분석: 고객 착장의 색·명도·채도를 분석해 현재 분위기를 판정",
+      "개인화 MCM World 큐레이션: 착장 무드·여행 스타일·제품 컬러웨이를 종합해 어울리는 MCM World 매칭",
+      "인터랙티브 공간 합성: 고객과 실제 제품은 유지하고 주변 공간만 MCM World로 전환해 실제 사용 모습을 경험",
+      "AI MCM TRAVEL PASSPORT: 착장·도시·제품 정보를 반영한 개인화 문구와 체험 사진 생성",
+      "QR 모바일 연동: 체험 결과를 QR로 연결해 사진·체험 제품을 다시 확인하고 공식 제품 페이지로 이동"
     ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
-  },
-  {
-    "id": 22,
-    "name": "서비스22",
-    "team": "팀22",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service22.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service22",
-    "figmaLink": "https://figma.com/uhheungcon/service22",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스22",
-    "content": "서비스22는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
+    "techstack": [
+      "PM: notion, figma, discord",
+      "DE: figma",
+      "FE: React, Next.js, TypeScript, Tailwind CSS, MediaPipe",
+      "BE: Spring Boot",
+      "Infra/Deploy: Docker, nginx",
+      "AI: chatgpt"
     ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
-  },
-  {
-    "id": 23,
-    "name": "서비스23",
-    "team": "팀23",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service23.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service23",
-    "figmaLink": "https://figma.com/uhheungcon/service23",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스23",
-    "content": "서비스23는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
-    ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
-  },
-  {
-    "id": 24,
-    "name": "서비스24",
-    "team": "팀24",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service24.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service24",
-    "figmaLink": "https://figma.com/uhheungcon/service24",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스24",
-    "content": "서비스24는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
-    ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
-  },
-  {
-    "id": 25,
-    "name": "서비스25",
-    "team": "팀25",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service25.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service25",
-    "figmaLink": "https://figma.com/uhheungcon/service25",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스25",
-    "content": "서비스25는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
-    ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
-  },
-  {
-    "id": 26,
-    "name": "서비스26",
-    "team": "팀26",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service26.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service26",
-    "figmaLink": "https://figma.com/uhheungcon/service26",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스26",
-    "content": "서비스26는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
-    ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
-  },
-  {
-    "id": 27,
-    "name": "서비스27",
-    "team": "팀27",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service27.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service27",
-    "figmaLink": "https://figma.com/uhheungcon/service27",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스27",
-    "content": "서비스27는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
-    ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
-  },
-  {
-    "id": 28,
-    "name": "서비스28",
-    "team": "팀28",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service28.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service28",
-    "figmaLink": "https://figma.com/uhheungcon/service28",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스28",
-    "content": "서비스28는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
-    ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
-  },
-  {
-    "id": 29,
-    "name": "서비스29",
-    "team": "팀29",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service29.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service29",
-    "figmaLink": "https://figma.com/uhheungcon/service29",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스29",
-    "content": "서비스29는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
-    ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
-  },
-  {
-    "id": 30,
-    "name": "서비스30",
-    "team": "팀30",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service30.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service30",
-    "figmaLink": "https://figma.com/uhheungcon/service30",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스30",
-    "content": "서비스30는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
-    ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
-  },
-  {
-    "id": 31,
-    "name": "서비스31",
-    "team": "팀31",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service31.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service31",
-    "figmaLink": "https://figma.com/uhheungcon/service31",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스31",
-    "content": "서비스31는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
-    ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
-  },
-  {
-    "id": 32,
-    "name": "서비스32",
-    "team": "팀32",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service32.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service32",
-    "figmaLink": "https://figma.com/uhheungcon/service32",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스32",
-    "content": "서비스32는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
-    ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
-  },
-  {
-    "id": 33,
-    "name": "서비스33",
-    "team": "팀33",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service33.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service33",
-    "figmaLink": "https://figma.com/uhheungcon/service33",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스33",
-    "content": "서비스33는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
-    ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
-  },
-  {
-    "id": 34,
-    "name": "서비스34",
-    "team": "팀34",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service34.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service34",
-    "figmaLink": "https://figma.com/uhheungcon/service34",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스34",
-    "content": "서비스34는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
-    ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
-  },
-  {
-    "id": 35,
-    "name": "서비스35",
-    "team": "팀35",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service35.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service35",
-    "figmaLink": "https://figma.com/uhheungcon/service35",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스35",
-    "content": "서비스35는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
-    ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
-  },
-  {
-    "id": 36,
-    "name": "서비스36",
-    "team": "팀36",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service36.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service36",
-    "figmaLink": "https://figma.com/uhheungcon/service36",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스36",
-    "content": "서비스36는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
-    ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
-  },
-  {
-    "id": 37,
-    "name": "서비스37",
-    "team": "팀37",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service37.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service37",
-    "figmaLink": "https://figma.com/uhheungcon/service37",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스37",
-    "content": "서비스37는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
-    ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
-  },
-  {
-    "id": 38,
-    "name": "서비스38",
-    "team": "팀38",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service38.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service38",
-    "figmaLink": "https://figma.com/uhheungcon/service38",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스38",
-    "content": "서비스38는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
-    ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
-  },
-  {
-    "id": 39,
-    "name": "서비스39",
-    "team": "팀39",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service39.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service39",
-    "figmaLink": "https://figma.com/uhheungcon/service39",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스39",
-    "content": "서비스39는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
-    ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
-  },
-  {
-    "id": 40,
-    "name": "서비스40",
-    "team": "팀40",
-    "tag": "OPEN",
-    "serviceImage": "/images/booths/default.svg",
-    "serviceLink": "https://service40.vercel.app",
-    "githubLink": "https://github.com/uhheungcon/service40",
-    "figmaLink": "https://figma.com/uhheungcon/service40",
-    "mainContent": "사용자의 문제를 해결하는 AI 기반 서비스40",
-    "content": "서비스40는 사용자의 불편함을 해결하기 위해 제작된 서비스입니다. 다양한 기능을 통해 더 편리한 경험을 제공하는 것을 목표로 합니다.",
-    "retrospect": "프로젝트를 진행하며 사용자 중심의 서비스 개발과 기능 설계의 중요성을 경험했습니다. 실제 사용자의 문제를 해결하는 방향으로 서비스를 개선하는 과정에서 많은 것을 배울 수 있었습니다.",
-    "functions": [
-      "사용자 맞춤 기능 제공",
-      "데이터 관리 기능",
-      "편리한 UI 제공",
-      "서비스 분석 기능",
-      "알림 기능",
-      "커뮤니티 기능"
-    ],
-    "techStack": [
-      "Frontend: React",
-      "Backend: NestJS",
-      "Database: MongoDB",
-      "Deployment: Vercel"
-    ]
+    "retrospect": ""
   }
 ]

@@ -1,23 +1,23 @@
 import math
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 from django.conf import settings
-from django.db.models import Avg, Count, IntegerField, Q, Sum, Value
-from django.db.models.functions import Cast, Coalesce
-from django.http import JsonResponse
+from django.db.models import Avg, Count, Exists, IntegerField, OuterRef, Q, Sum, Value
+from django.db.models.functions import Cast, Coalesce, Lower
+from django.http import HttpResponse, JsonResponse
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .exceptions import ApiError
-from .models import Booth, BoothView
+from .models import Booth, BoothImage, BoothView
 from .params import parse_enum, parse_enum_list, parse_integer, parse_string
 from .serializers import BoothDetailSerializer, BoothSummarySerializer
 
 SORTS = {
     "id": ["id"],
-    "name": ["name", "id"],
+    "name": [Lower("name"), "id"],
     "popular": ["-view_count", "-total_duration_ms", "id"],
-    "recommend": ["-recommend_score", "-view_count", "id"],
+    "recommend": ["-recent_view_count", "-view_count", "id"],
 }
 
 RANKING_METRICS = {
@@ -28,12 +28,23 @@ RANKING_METRICS = {
 
 
 def with_stats(queryset):
+    recent_since = datetime.now(timezone.utc) - timedelta(
+        minutes=settings.TRENDING_WINDOW_MINUTES
+    )
+
     return queryset.annotate(
         view_count=Count("views"),
+        recent_view_count=Count("views", filter=Q(views__viewed_at__gte=recent_since)),
         visitor_count=Count("views__visitor_id", distinct=True),
         total_duration_ms=Coalesce(Sum("views__duration_ms"), Value(0)),
         avg_duration_ms=Cast(
             Coalesce(Avg("views__duration_ms"), Value(0.0)), IntegerField()
+        ),
+        has_service_image=Exists(
+            BoothImage.objects.filter(booth_id=OuterRef("pk"), service_image__isnull=False)
+        ),
+        has_logo_image=Exists(
+            BoothImage.objects.filter(booth_id=OuterRef("pk"), logo_image__isnull=False)
         ),
     )
 
@@ -46,6 +57,7 @@ def stat_payload(booth_id):
     return {
         "boothId": booth.id,
         "viewCount": booth.view_count,
+        "recentViewCount": booth.recent_view_count,
         "visitorCount": booth.visitor_count,
         "totalDurationMs": booth.total_duration_ms,
         "avgDurationMs": booth.avg_duration_ms,
@@ -76,6 +88,7 @@ class BoothListView(APIView):
             maximum=settings.MAX_PAGE_SIZE,
             fallback=settings.DEFAULT_PAGE_SIZE,
         )
+        detail = parse_integer(query.get("detail"), field="detail", minimum=0, maximum=1, fallback=0) == 1
 
         booths = Booth.objects.all()
 
@@ -91,11 +104,15 @@ class BoothListView(APIView):
 
         total = booths.count()
         offset = (page - 1) * size
-        items = with_stats(booths).order_by(*SORTS[sort])[offset : offset + size]
+        items = with_stats(booths).order_by(*SORTS[sort])
+        if detail:
+            items = items.prefetch_related("functions", "tech_stack")
+        items = items[offset : offset + size]
+        serializer = BoothDetailSerializer if detail else BoothSummarySerializer
 
         return Response(
             {
-                "items": BoothSummarySerializer(items, many=True).data,
+                "items": serializer(items, many=True, context={"request": request}).data,
                 "page": page,
                 "size": size,
                 "total": total,
@@ -129,7 +146,14 @@ class BoothRankingView(APIView):
 
         items = with_stats(Booth.objects.all()).order_by(*RANKING_METRICS[metric])[:limit]
 
-        return Response({"metric": metric, "items": BoothSummarySerializer(items, many=True).data})
+        return Response(
+            {
+                "metric": metric,
+                "items": BoothSummarySerializer(
+                    items, many=True, context={"request": request}
+                ).data,
+            }
+        )
 
 
 class BoothDetailView(APIView):
@@ -143,7 +167,28 @@ class BoothDetailView(APIView):
         if booth is None:
             raise ApiError.not_found(f"{booth_id}번 부스를 찾을 수 없습니다.", "BOOTH_NOT_FOUND")
 
-        return Response(BoothDetailSerializer(booth).data)
+        return Response(BoothDetailSerializer(booth, context={"request": request}).data)
+
+
+class BoothImageView(APIView):
+    field = "service_image"
+
+    def get(self, request, booth_id):
+        image = BoothImage.objects.filter(booth_id=booth_id).only(self.field).first()
+        data = getattr(image, self.field, None) if image else None
+
+        if not data:
+            raise ApiError.not_found(
+                f"{booth_id}번 부스의 이미지를 찾을 수 없습니다.", "BOOTH_IMAGE_NOT_FOUND"
+            )
+
+        response = HttpResponse(bytes(data), content_type="image/png")
+        response["Cache-Control"] = "public, max-age=86400"
+        return response
+
+
+class BoothLogoView(BoothImageView):
+    field = "logo_image"
 
 
 class BoothViewLogView(APIView):
@@ -168,7 +213,7 @@ class BoothViewLogView(APIView):
             raise ApiError.bad_request(
                 "durationMs 는 0 이상의 숫자여야 합니다.", "INVALID_DURATION"
             )
-        if raw_duration < 0 or raw_duration != raw_duration:
+        if not math.isfinite(raw_duration) or raw_duration < 0:
             raise ApiError.bad_request(
                 "durationMs 는 0 이상의 숫자여야 합니다.", "INVALID_DURATION"
             )
