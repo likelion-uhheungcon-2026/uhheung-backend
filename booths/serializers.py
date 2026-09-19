@@ -1,9 +1,11 @@
+from django.conf import settings
 from rest_framework import serializers
 
 from .models import Booth
 
 
 class BoothSummarySerializer(serializers.ModelSerializer):
+    category = serializers.SerializerMethodField()
     maincontent = serializers.CharField(source="main_content")
     serviceimage = serializers.SerializerMethodField()
     logoimage = serializers.SerializerMethodField()
@@ -23,6 +25,7 @@ class BoothSummarySerializer(serializers.ModelSerializer):
             "name",
             "team",
             "tag",
+            "category",
             "maincontent",
             "serviceimage",
             "logoimage",
@@ -34,6 +37,11 @@ class BoothSummarySerializer(serializers.ModelSerializer):
             "totalDurationMs",
             "avgDurationMs",
         ]
+
+    def get_category(self, booth):
+        return next(
+            (name for name, ids in settings.BOOTH_CATEGORIES.items() if booth.id in ids), None
+        )
 
     def _image_url(self, booth, suffix):
         url = f"/api/booths/{booth.id}/{suffix}"

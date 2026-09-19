@@ -91,6 +91,12 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 BOOTH_TAGS = ["멋사", "SJF", "AAC", "OPEN"]
+BOOTH_CATEGORIES = {
+    "EXP": range(1, 6),
+    "CAR": range(6, 11),
+    "WEL": range(11, 16),
+    "CON": range(16, 22),
+}
 
 DEFAULT_PAGE_SIZE = 20
 MAX_PAGE_SIZE = 100
