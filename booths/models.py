@@ -57,6 +57,20 @@ class BoothImage(models.Model):
         return f"{self.booth_id}번 이미지"
 
 
+class BoothPhoto(models.Model):
+    booth = models.ForeignKey(
+        Booth, on_delete=models.DO_NOTHING, db_constraint=False, related_name="photos"
+    )
+    position = models.IntegerField()
+    image = models.BinaryField()
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "booth_photo"
+        ordering = ["position"]
+        unique_together = [("booth", "position")]
+
+
 class BoothFunction(models.Model):
     booth = models.ForeignKey(Booth, on_delete=models.CASCADE, related_name="functions")
     position = models.IntegerField()
