@@ -10,6 +10,7 @@ import openpyxl
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SEED_FILE = BASE_DIR / "data" / "booths.seed.json"
+RETROSPECT_FILE = BASE_DIR / "data" / "retrospects.json"
 
 # 엑셀 열 위치
 COL_TEAM = 2
@@ -22,9 +23,8 @@ COL_TECH_STACK = 11
 COL_CONTENT = 12
 COL_FUNCTIONS = 14
 COL_REFACTORING = 16
-COL_COLLAB = 17
-
-RETROSPECT_COLUMNS = {"refactoring": COL_REFACTORING, "collab": COL_COLLAB}
+COL_COLLABORATION = 17
+COL_MESSAGE = 18
 
 TRACK_TO_TAG = {
     "LIKELION Track": "멋사",
@@ -111,7 +111,7 @@ def parse_tech_stack(text):
     return [line.rstrip(" ,") for line in lines(text)]
 
 
-def build_booth(row, retrospect_column):
+def build_booth(row):
     team = cell(row, COL_TEAM)
     booth_id = BOOTH_ID_BY_TEAM[team_key(team)]
     warnings = []
@@ -144,17 +144,23 @@ def build_booth(row, retrospect_column):
         "content": cell(row, COL_CONTENT),
         "function": parse_functions(cell(row, COL_FUNCTIONS), warnings),
         "techstack": parse_tech_stack(cell(row, COL_TECH_STACK)),
-        "retrospect": cell(row, retrospect_column) if retrospect_column is not None else "",
     }
     booth.update(OVERRIDES.get(booth_id, {}))
 
-    return booth, warnings
+    retrospect = {
+        "id": booth_id,
+        "refactoring": cell(row, COL_REFACTORING),
+        "collaboration": cell(row, COL_COLLABORATION),
+        "message": cell(row, COL_MESSAGE),
+    }
+
+    return booth, retrospect, warnings
 
 
-def load_booths(xlsx_path, retrospect_column):
+def load_booths(xlsx_path):
     rows = list(openpyxl.load_workbook(xlsx_path, read_only=True).worksheets[0].iter_rows(values_only=True))
 
-    booths, report = {}, []
+    booths, retrospects, report = {}, {}, []
     for row in rows[1:]:
         if not any(row):
             continue
@@ -168,11 +174,12 @@ def load_booths(xlsx_path, retrospect_column):
         if cell(row, COL_TRACK) not in TRACK_TO_TAG:
             raise SystemExit(f"알 수 없는 트랙입니다: {team} / {cell(row, COL_TRACK)}")
 
-        booth, warnings = build_booth(row, retrospect_column)
+        booth, retrospect, warnings = build_booth(row)
         if booth["id"] in booths:
             raise SystemExit(f"{booth['id']}번 부스 응답이 두 개입니다: {team}")
 
         booths[booth["id"]] = booth
+        retrospects[booth["id"]] = retrospect
         for warning in warnings:
             report.append(f"  {booth['id']}번 {booth['name']}: {warning}")
 
@@ -180,7 +187,8 @@ def load_booths(xlsx_path, retrospect_column):
     if missing:
         raise SystemExit(f"응답이 없는 부스가 있습니다: {missing}")
 
-    return [booths[booth_id] for booth_id in sorted(booths)], report
+    ordered = sorted(booths)
+    return [booths[i] for i in ordered], [retrospects[i] for i in ordered], report
 
 
 def write_frontend(path, booths):
@@ -203,25 +211,21 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("xlsx", type=Path, help="구글 폼 응답 엑셀 파일")
     parser.add_argument("--frontend", type=Path, help="함께 덮어쓸 프론트 src/data/booths.js 경로")
-    parser.add_argument(
-        "--retrospect",
-        choices=sorted(RETROSPECT_COLUMNS),
-        help="retrospect 에 넣을 열 (refactoring: 서비스 리팩토링 내용, collab: 우리 팀의 협업 이야기)",
-    )
     args = parser.parse_args()
 
-    retrospect_column = RETROSPECT_COLUMNS.get(args.retrospect)
-    booths, report = load_booths(args.xlsx, retrospect_column)
+    booths, retrospects, report = load_booths(args.xlsx)
 
     SEED_FILE.write_text(json.dumps(booths, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"백엔드 시드 {len(booths)}건 → {SEED_FILE}")
 
+    RETROSPECT_FILE.write_text(
+        json.dumps(retrospects, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+    print(f"회고 {len(retrospects)}건 → {RETROSPECT_FILE} (깃에 올리지 않음, 릴리즈로 업로드)")
+
     if args.frontend:
         write_frontend(args.frontend, booths)
         print(f"프론트 데이터 {len(booths)}건 → {args.frontend}")
-
-    if retrospect_column is None:
-        report.append("  retrospect: 넣을 열이 정해지지 않아 전부 비워 둠 (--retrospect 로 지정)")
 
     if report:
         print("\n확인 필요:")

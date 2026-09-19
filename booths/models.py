@@ -16,7 +16,9 @@ class Booth(models.Model):
 
     main_content = models.TextField(blank=True, default="", verbose_name="한 줄 소개")
     content = models.TextField(blank=True, default="", verbose_name="상세 설명")
-    retrospect = models.TextField(blank=True, default="", verbose_name="회고")
+    refactoring = models.TextField(blank=True, default="", verbose_name="서비스 리팩토링 내용")
+    collaboration = models.TextField(blank=True, default="", verbose_name="우리 팀의 협업 이야기")
+    message = models.TextField(blank=True, default="", verbose_name="서로에게 전하는 한 마디")
 
     service_image = models.CharField(max_length=300, blank=True, null=True)
     service_link = models.CharField(max_length=300, blank=True, null=True)
