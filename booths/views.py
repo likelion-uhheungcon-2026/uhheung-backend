@@ -79,6 +79,9 @@ class BoothListView(APIView):
 
         search = parse_string(query.get("search"), field="search", max_length=100)
         tags = parse_enum_list(query.get("tags"), field="tags", allowed=settings.BOOTH_TAGS)
+        categories = parse_enum_list(
+            query.get("categories"), field="categories", allowed=list(settings.BOOTH_CATEGORIES)
+        )
         sort = parse_enum(query.get("sort"), field="sort", allowed=list(SORTS), fallback="name")
         page = parse_integer(query.get("page"), field="page", minimum=1, maximum=10_000, fallback=1)
         size = parse_integer(
@@ -101,6 +104,11 @@ class BoothListView(APIView):
 
         if tags:
             booths = booths.filter(tag__in=tags)
+
+        if categories:
+            booths = booths.filter(
+                id__in=[i for name in categories for i in settings.BOOTH_CATEGORIES[name]]
+            )
 
         total = booths.count()
         offset = (page - 1) * size
