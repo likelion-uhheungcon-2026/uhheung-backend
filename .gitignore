@@ -17,6 +17,7 @@ staticfiles/
 *.sqlite3
 data/*.db
 data/retrospects.json
+data/links.json
 
 # 로그 / OS
 *.log

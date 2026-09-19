@@ -11,6 +11,7 @@ import openpyxl
 BASE_DIR = Path(__file__).resolve().parent.parent
 SEED_FILE = BASE_DIR / "data" / "booths.seed.json"
 RETROSPECT_FILE = BASE_DIR / "data" / "retrospects.json"
+LINKS_FILE = BASE_DIR / "data" / "links.json"
 
 # 엑셀 열 위치
 COL_TEAM = 2
@@ -81,13 +82,6 @@ def urls(text):
     return [url.rstrip(".)") for url in URL_PATTERN.findall(text)]
 
 
-def first_url(text, domain=None):
-    for url in urls(text):
-        if domain is None or domain in url:
-            return url
-    return None
-
-
 def lines(text):
     return [line.strip() for line in text.replace("\t", " ").splitlines() if line.strip()]
 
@@ -119,17 +113,17 @@ def build_booth(row):
     project_links = cell(row, COL_PROJECT_LINKS)
     service_url_cell = cell(row, COL_SERVICE_URL)
 
-    servicelink = first_url(service_url_cell)
-    if len(urls(service_url_cell)) > 1:
-        warnings.append(f"서비스 URL 여러 개 중 첫 번째만 사용: {servicelink}")
-    if servicelink is None:
-        warnings.append("서비스 URL 없음")
+    servicelinks = urls(service_url_cell)
+    githublinks = [url for url in urls(project_links) if "github.com" in url]
+    figmalinks = [url for url in urls(project_links) if "figma.com" in url]
+    etclinks = [
+        url for url in urls(project_links) if url not in githublinks and url not in figmalinks
+    ]
 
-    githublink = first_url(project_links, "github.com")
-    if githublink is None:
+    if not servicelinks:
+        warnings.append("서비스 URL 없음")
+    if not githublinks:
         warnings.append("GitHub 링크 없음")
-    elif len([url for url in urls(project_links) if "github.com" in url]) > 1:
-        warnings.append(f"GitHub 링크 여러 개 중 첫 번째만 사용: {githublink}")
 
     booth = {
         "id": booth_id,
@@ -137,9 +131,9 @@ def build_booth(row):
         "team": team,
         "tag": TRACK_TO_TAG[cell(row, COL_TRACK)],
         "serviceimage": None,
-        "servicelink": servicelink,
-        "githublink": githublink,
-        "figmalink": first_url(project_links, "figma.com"),
+        "servicelink": next(iter(servicelinks), None),
+        "githublink": next(iter(githublinks), None),
+        "figmalink": next(iter(figmalinks), None),
         "maincontent": cell(row, COL_MAIN_CONTENT),
         "content": cell(row, COL_CONTENT),
         "function": parse_functions(cell(row, COL_FUNCTIONS), warnings),
@@ -154,13 +148,21 @@ def build_booth(row):
         "message": cell(row, COL_MESSAGE),
     }
 
-    return booth, retrospect, warnings
+    links = {
+        "id": booth_id,
+        "servicelinks": servicelinks,
+        "githublinks": githublinks,
+        "figmalinks": figmalinks,
+        "etclinks": etclinks,
+    }
+
+    return booth, retrospect, links, warnings
 
 
 def load_booths(xlsx_path):
     rows = list(openpyxl.load_workbook(xlsx_path, read_only=True).worksheets[0].iter_rows(values_only=True))
 
-    booths, retrospects, report = {}, {}, []
+    booths, retrospects, links, report = {}, {}, {}, []
     for row in rows[1:]:
         if not any(row):
             continue
@@ -174,12 +176,13 @@ def load_booths(xlsx_path):
         if cell(row, COL_TRACK) not in TRACK_TO_TAG:
             raise SystemExit(f"알 수 없는 트랙입니다: {team} / {cell(row, COL_TRACK)}")
 
-        booth, retrospect, warnings = build_booth(row)
+        booth, retrospect, link, warnings = build_booth(row)
         if booth["id"] in booths:
             raise SystemExit(f"{booth['id']}번 부스 응답이 두 개입니다: {team}")
 
         booths[booth["id"]] = booth
         retrospects[booth["id"]] = retrospect
+        links[booth["id"]] = link
         for warning in warnings:
             report.append(f"  {booth['id']}번 {booth['name']}: {warning}")
 
@@ -188,7 +191,12 @@ def load_booths(xlsx_path):
         raise SystemExit(f"응답이 없는 부스가 있습니다: {missing}")
 
     ordered = sorted(booths)
-    return [booths[i] for i in ordered], [retrospects[i] for i in ordered], report
+    return (
+        [booths[i] for i in ordered],
+        [retrospects[i] for i in ordered],
+        [links[i] for i in ordered],
+        report,
+    )
 
 
 def write_frontend(path, booths):
@@ -213,7 +221,7 @@ def main():
     parser.add_argument("--frontend", type=Path, help="함께 덮어쓸 프론트 src/data/booths.js 경로")
     args = parser.parse_args()
 
-    booths, retrospects, report = load_booths(args.xlsx)
+    booths, retrospects, links, report = load_booths(args.xlsx)
 
     SEED_FILE.write_text(json.dumps(booths, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"백엔드 시드 {len(booths)}건 → {SEED_FILE}")
@@ -222,6 +230,9 @@ def main():
         json.dumps(retrospects, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
     print(f"회고 {len(retrospects)}건 → {RETROSPECT_FILE} (깃에 올리지 않음, 릴리즈로 업로드)")
+
+    LINKS_FILE.write_text(json.dumps(links, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(f"링크 {len(links)}건 → {LINKS_FILE} (깃에 올리지 않음, 릴리즈로 업로드)")
 
     if args.frontend:
         write_frontend(args.frontend, booths)

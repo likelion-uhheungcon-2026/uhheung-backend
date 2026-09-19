@@ -100,6 +100,7 @@ TRENDING_WINDOW_MINUTES = 30
 
 SEED_FILE = BASE_DIR / "data" / "booths.seed.json"
 RETROSPECT_FILE = BASE_DIR / "data" / "retrospects.json"
+LINKS_FILE = BASE_DIR / "data" / "links.json"
 
 BOOTH_IMAGE_WIDTH = 1200
 BOOTH_LOGO_WIDTH = 600

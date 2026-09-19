@@ -79,6 +79,20 @@ class BoothTechStack(models.Model):
         unique_together = [("booth", "position")]
 
 
+class BoothLink(models.Model):
+    KINDS = ["service", "github", "figma", "etc"]
+
+    booth = models.ForeignKey(Booth, on_delete=models.CASCADE, related_name="links")
+    kind = models.CharField(max_length=10, choices=[(kind, kind) for kind in KINDS])
+    position = models.IntegerField()
+    url = models.CharField(max_length=500)
+
+    class Meta:
+        db_table = "booth_link"
+        ordering = ["kind", "position"]
+        unique_together = [("booth", "kind", "position")]
+
+
 class BoothView(models.Model):
     booth = models.ForeignKey(Booth, on_delete=models.CASCADE, related_name="views")
     visitor_id = models.CharField(max_length=64, db_index=True)
