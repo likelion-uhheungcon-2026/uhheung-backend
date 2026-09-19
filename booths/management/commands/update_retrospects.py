@@ -1,12 +1,9 @@
-import json
-import os
-import urllib.request
-
 from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
 from booths.models import Booth
+from booths.release_data import load_release_data
 
 FIELDS = ["refactoring", "collaboration", "message"]
 
@@ -15,16 +12,8 @@ class Command(BaseCommand):
     help = "회고 파일(RETROSPECT_URL 또는 data/retrospects.json)의 세 항목만 기존 부스에 덮어쓴다. 조회 기록은 건드리지 않는다."
 
     def handle(self, *args, **options):
-        url = os.environ.get("RETROSPECT_URL")
-
-        if url:
-            with urllib.request.urlopen(url) as response:
-                items = json.loads(response.read().decode("utf-8"))
-            source = url
-        elif settings.RETROSPECT_FILE.exists():
-            items = json.loads(settings.RETROSPECT_FILE.read_text(encoding="utf-8"))
-            source = settings.RETROSPECT_FILE
-        else:
+        items, source = load_release_data("RETROSPECT_URL", settings.RETROSPECT_FILE)
+        if items is None:
             self.stdout.write("회고 파일이 없어 건너뜁니다.")
             return
 

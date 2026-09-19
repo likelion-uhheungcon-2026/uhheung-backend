@@ -56,6 +56,10 @@ class BoothDetailSerializer(BoothSummarySerializer):
     figmalink = serializers.CharField(source="figma_link", allow_null=True)
     function = serializers.SerializerMethodField()
     techstack = serializers.SerializerMethodField()
+    servicelinks = serializers.SerializerMethodField()
+    githublinks = serializers.SerializerMethodField()
+    figmalinks = serializers.SerializerMethodField()
+    etclinks = serializers.SerializerMethodField()
 
     class Meta(BoothSummarySerializer.Meta):
         fields = BoothSummarySerializer.Meta.fields + [
@@ -65,6 +69,10 @@ class BoothDetailSerializer(BoothSummarySerializer):
             "message",
             "githublink",
             "figmalink",
+            "servicelinks",
+            "githublinks",
+            "figmalinks",
+            "etclinks",
             "function",
             "techstack",
         ]
@@ -74,3 +82,18 @@ class BoothDetailSerializer(BoothSummarySerializer):
 
     def get_techstack(self, booth):
         return [item.content for item in booth.tech_stack.all()]
+
+    def _links(self, booth, kind):
+        return [link.url for link in booth.links.all() if link.kind == kind]
+
+    def get_servicelinks(self, booth):
+        return self._links(booth, "service")
+
+    def get_githublinks(self, booth):
+        return self._links(booth, "github")
+
+    def get_figmalinks(self, booth):
+        return self._links(booth, "figma")
+
+    def get_etclinks(self, booth):
+        return self._links(booth, "etc")

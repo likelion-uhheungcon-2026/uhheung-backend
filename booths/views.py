@@ -106,7 +106,7 @@ class BoothListView(APIView):
         offset = (page - 1) * size
         items = with_stats(booths).order_by(*SORTS[sort])
         if detail:
-            items = items.prefetch_related("functions", "tech_stack")
+            items = items.prefetch_related("functions", "tech_stack", "links")
         items = items[offset : offset + size]
         serializer = BoothDetailSerializer if detail else BoothSummarySerializer
 
@@ -160,7 +160,7 @@ class BoothDetailView(APIView):
     def get(self, request, booth_id):
         booth = (
             with_stats(Booth.objects.filter(pk=booth_id))
-            .prefetch_related("functions", "tech_stack")
+            .prefetch_related("functions", "tech_stack", "links")
             .first()
         )
 
