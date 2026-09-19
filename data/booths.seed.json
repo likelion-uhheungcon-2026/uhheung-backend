@@ -19,8 +19,7 @@
       "Backend - Python·Django | API DRF | DB PostgreSQL | AI OpenAI API | Deploy Render",
       "Frontend - React·HTML5·CSS3·JavaScript (JSX) | State Zustand·TanStack Query | Styling Tailwind CSS | Routing React Router | Network Axios | Build Vite | Deploy Vercel",
       "PM - Figma"
-    ],
-    "retrospect": ""
+    ]
   },
   {
     "id": 2,
@@ -56,8 +55,7 @@
       "Map: Google Maps API, React Native Maps",
       "DB: PostgreSQL, supabase, Prisma",
       "Deploy: AWS EC2, Docker Compose, Nginx"
-    ],
-    "retrospect": ""
+    ]
   },
   {
     "id": 3,
@@ -89,8 +87,7 @@
       "DB: MySQL",
       "Deploy: AWS, Docker, Vercel",
       "Dev Tool: Cursor"
-    ],
-    "retrospect": ""
+    ]
   },
   {
     "id": 4,
@@ -116,8 +113,7 @@
       "AI: ChatGPT, Claude",
       "DB: Supabase, PostgreSQL, MySQL",
       "Deploy: Gabia"
-    ],
-    "retrospect": ""
+    ]
   },
   {
     "id": 5,
@@ -147,8 +143,7 @@
       "Deploy: AWS EC2, Nginx, Let's Encrypt, GitHub Actions",
       "Domain: Gabia",
       "Monitoring: Sentry"
-    ],
-    "retrospect": ""
+    ]
   },
   {
     "id": 6,
@@ -172,8 +167,7 @@
       "FE : React, Vercel",
       "BE : Spring Boot, PostgreSQL, AWS, Docker",
       "AI : OpenAI"
-    ],
-    "retrospect": ""
+    ]
   },
   {
     "id": 7,
@@ -202,8 +196,7 @@
       "DB: PostgreSQL, Redis, Flyway",
       "AI: OpenAI API",
       "Deploy: Docker Compose, GitHub Action, Vercel, IOS 실기기"
-    ],
-    "retrospect": ""
+    ]
   },
   {
     "id": 8,
@@ -229,8 +222,7 @@
       "AI: Sapiens2, OpenCV, MediaPipe, PyTorch, GPT API",
       "DB: Supabase",
       "Deploy: Vercel, AWS"
-    ],
-    "retrospect": ""
+    ]
   },
   {
     "id": 9,
@@ -256,8 +248,7 @@
       "DE: Figma, Adobe Illustrator, Adobe Photoshop",
       "Deploy: React Native, AWS, Spring Boot, MySQL",
       "AI: ChatGPT, Claude"
-    ],
-    "retrospect": ""
+    ]
   },
   {
     "id": 10,
@@ -284,8 +275,7 @@
       "AI: Python, OpenAI, FastAPI, LangChain",
       "DB: PostgreSQL",
       "Deploy: Railway, Vercel"
-    ],
-    "retrospect": ""
+    ]
   },
   {
     "id": 11,
@@ -311,8 +301,7 @@
       "AI: Python, OpenAI API",
       "BLE: React Native BLE PLX, Nordic UART Service",
       "Embedded/IoT: Arduino, Orange Board BLE, DHT11, MPU6050, C/C++"
-    ],
-    "retrospect": ""
+    ]
   },
   {
     "id": 12,
@@ -339,8 +328,7 @@
       "AI: Gemini API",
       "DB: MySQL",
       "Deploy: Vercel, Railway"
-    ],
-    "retrospect": ""
+    ]
   },
   {
     "id": 13,
@@ -367,8 +355,7 @@
       "FE: JS, HTML, CSS, React, Vue",
       "DB: MariaDB",
       "Depoy: OCI, Docker, Github action, Vercel"
-    ],
-    "retrospect": ""
+    ]
   },
   {
     "id": 14,
@@ -391,8 +378,7 @@
       "기획디자인: Manifast, Notion, Figma, Adobe Illustrator, Adobe Photoshop",
       "개발: React, Django, PostgreSQL, AWS, Docker, nginx, Vercel",
       "AI: ChatGPT"
-    ],
-    "retrospect": ""
+    ]
   },
   {
     "id": 15,
@@ -421,8 +407,7 @@
       "FE: React, TypeScript",
       "AI: ChatGPT, Claude",
       "Deploy: Vercel, AWS, S3 ,Nginx, Docker, RDS"
-    ],
-    "retrospect": ""
+    ]
   },
   {
     "id": 16,
@@ -451,8 +436,7 @@
       "AI / Recommendation : Python, FastAPI, RecRec, OpenAI API, FLUX API",
       "Computer Vision : YOLO, OpenCV, MediaPipe, PyTorch",
       "Deployment / DevOps : AWS EC2, AWS ECR, Docker, GitHub Actions, Vercel"
-    ],
-    "retrospect": ""
+    ]
   },
   {
     "id": 17,
@@ -480,8 +464,7 @@
       "AI: Open AI GPT4o-mini",
       "DB: MySQL, TiDB",
       "Deploy: Vercel, GCP, Docker, GitHub Actions"
-    ],
-    "retrospect": ""
+    ]
   },
   {
     "id": 18,
@@ -507,8 +490,7 @@
       "Design: Figma, blender",
       "FE: React, TypeScript, Vite, Three.js",
       "BE: Spring boot / MySQL / Flyway"
-    ],
-    "retrospect": ""
+    ]
   },
   {
     "id": 19,
@@ -534,8 +516,7 @@
       "디자인 : Figma",
       "개발 : React, Spring Boot, PostgreSQL, Redis, AWS",
       "AI : ChatGPT"
-    ],
-    "retrospect": ""
+    ]
   },
   {
     "id": 20,
@@ -563,8 +544,7 @@
       "BE: supabase, python",
       "FE: JS,HTML,CSS",
       "Deploy: 애니멀리그 - Gabia, 어흥콘 - 로컬 환경"
-    ],
-    "retrospect": ""
+    ]
   },
   {
     "id": 21,
@@ -591,7 +571,6 @@
       "BE: Spring Boot",
       "Infra/Deploy: Docker, nginx",
       "AI: chatgpt"
-    ],
-    "retrospect": ""
+    ]
   }
 ]

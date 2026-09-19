@@ -60,7 +60,9 @@ class BoothDetailSerializer(BoothSummarySerializer):
     class Meta(BoothSummarySerializer.Meta):
         fields = BoothSummarySerializer.Meta.fields + [
             "content",
-            "retrospect",
+            "refactoring",
+            "collaboration",
+            "message",
             "githublink",
             "figmalink",
             "function",

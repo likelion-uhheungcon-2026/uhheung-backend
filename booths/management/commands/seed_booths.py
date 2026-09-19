@@ -38,7 +38,6 @@ class Command(BaseCommand):
                     tag=item["tag"],
                     main_content=item.get("maincontent") or "",
                     content=item.get("content") or "",
-                    retrospect=item.get("retrospect") or "",
                     service_image=item.get("serviceimage"),
                     service_link=item.get("servicelink"),
                     github_link=item.get("githublink"),
