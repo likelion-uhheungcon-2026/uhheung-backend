@@ -2,14 +2,25 @@ import math
 from datetime import datetime, timedelta, timezone
 
 from django.conf import settings
-from django.db.models import Avg, Count, Exists, IntegerField, OuterRef, Q, Sum, Value
+from django.db.models import (
+    Avg,
+    Count,
+    IntegerField,
+    OuterRef,
+    Prefetch,
+    Q,
+    Subquery,
+    Sum,
+    Value,
+)
 from django.db.models.functions import Cast, Coalesce, Lower
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .exceptions import ApiError
-from .models import Booth, BoothImage, BoothView
+from .images import image_response
+from .models import Booth, BoothImage, BoothPhoto, BoothView
 from .params import parse_enum, parse_enum_list, parse_integer, parse_string
 from .serializers import BoothDetailSerializer, BoothSummarySerializer
 
@@ -40,11 +51,27 @@ def with_stats(queryset):
         avg_duration_ms=Cast(
             Coalesce(Avg("views__duration_ms"), Value(0.0)), IntegerField()
         ),
-        has_service_image=Exists(
-            BoothImage.objects.filter(booth_id=OuterRef("pk"), service_image__isnull=False)
+        service_image_version=Subquery(
+            BoothImage.objects.filter(
+                booth_id=OuterRef("pk"), service_image__isnull=False
+            ).values("updated_at")[:1]
         ),
-        has_logo_image=Exists(
-            BoothImage.objects.filter(booth_id=OuterRef("pk"), logo_image__isnull=False)
+        logo_image_version=Subquery(
+            BoothImage.objects.filter(
+                booth_id=OuterRef("pk"), logo_image__isnull=False
+            ).values("updated_at")[:1]
+        ),
+    )
+
+
+def with_details(queryset):
+    return queryset.prefetch_related(
+        "functions",
+        "tech_stack",
+        "links",
+        Prefetch(
+            "photos",
+            queryset=BoothPhoto.objects.only("id", "booth_id", "position", "updated_at"),
         ),
     )
 
@@ -114,7 +141,7 @@ class BoothListView(APIView):
         offset = (page - 1) * size
         items = with_stats(booths).order_by(*SORTS[sort])
         if detail:
-            items = items.prefetch_related("functions", "tech_stack", "links")
+            items = with_details(items)
         items = items[offset : offset + size]
         serializer = BoothDetailSerializer if detail else BoothSummarySerializer
 
@@ -166,11 +193,7 @@ class BoothRankingView(APIView):
 
 class BoothDetailView(APIView):
     def get(self, request, booth_id):
-        booth = (
-            with_stats(Booth.objects.filter(pk=booth_id))
-            .prefetch_related("functions", "tech_stack", "links")
-            .first()
-        )
+        booth = with_details(with_stats(Booth.objects.filter(pk=booth_id))).first()
 
         if booth is None:
             raise ApiError.not_found(f"{booth_id}번 부스를 찾을 수 없습니다.", "BOOTH_NOT_FOUND")
@@ -190,13 +213,23 @@ class BoothImageView(APIView):
                 f"{booth_id}번 부스의 이미지를 찾을 수 없습니다.", "BOOTH_IMAGE_NOT_FOUND"
             )
 
-        response = HttpResponse(bytes(data), content_type="image/png")
-        response["Cache-Control"] = "public, max-age=86400"
-        return response
+        return image_response(request, data)
 
 
 class BoothLogoView(BoothImageView):
     field = "logo_image"
+
+
+class BoothPhotoView(APIView):
+    def get(self, request, booth_id, position):
+        photo = BoothPhoto.objects.filter(booth_id=booth_id, position=position).first()
+
+        if photo is None:
+            raise ApiError.not_found(
+                f"{booth_id}번 부스의 {position}번 이미지를 찾을 수 없습니다.", "BOOTH_IMAGE_NOT_FOUND"
+            )
+
+        return image_response(request, photo.image)
 
 
 class BoothViewLogView(APIView):

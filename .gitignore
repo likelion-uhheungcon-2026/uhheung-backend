@@ -18,6 +18,8 @@ staticfiles/
 data/*.db
 data/retrospects.json
 data/links.json
+data/photos.zip
+data/photo_sources.json
 
 # 로그 / OS
 *.log

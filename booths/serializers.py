@@ -43,19 +43,21 @@ class BoothSummarySerializer(serializers.ModelSerializer):
             (name for name, ids in settings.BOOTH_CATEGORIES.items() if booth.id in ids), None
         )
 
-    def _image_url(self, booth, suffix):
-        url = f"/api/booths/{booth.id}/{suffix}"
+    def _image_url(self, booth, suffix, version):
+        url = f"/api/booths/{booth.id}/{suffix}?v={int(version.timestamp())}"
         request = self.context.get("request")
         return request.build_absolute_uri(url) if request else url
 
     def get_serviceimage(self, booth):
-        if getattr(booth, "has_service_image", False):
-            return self._image_url(booth, "image")
+        version = getattr(booth, "service_image_version", None)
+        if version:
+            return self._image_url(booth, "image", version)
         return booth.service_image or None
 
     def get_logoimage(self, booth):
-        if getattr(booth, "has_logo_image", False):
-            return self._image_url(booth, "logo")
+        version = getattr(booth, "logo_image_version", None)
+        if version:
+            return self._image_url(booth, "logo", version)
         return None
 
 
@@ -68,6 +70,7 @@ class BoothDetailSerializer(BoothSummarySerializer):
     githublinks = serializers.SerializerMethodField()
     figmalinks = serializers.SerializerMethodField()
     etclinks = serializers.SerializerMethodField()
+    images = serializers.SerializerMethodField()
 
     class Meta(BoothSummarySerializer.Meta):
         fields = BoothSummarySerializer.Meta.fields + [
@@ -81,6 +84,7 @@ class BoothDetailSerializer(BoothSummarySerializer):
             "githublinks",
             "figmalinks",
             "etclinks",
+            "images",
             "function",
             "techstack",
         ]
@@ -105,3 +109,9 @@ class BoothDetailSerializer(BoothSummarySerializer):
 
     def get_etclinks(self, booth):
         return self._links(booth, "etc")
+
+    def get_images(self, booth):
+        return [
+            self._image_url(booth, f"images/{photo.position}", photo.updated_at)
+            for photo in booth.photos.all()
+        ]

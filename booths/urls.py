@@ -5,6 +5,7 @@ from .views import (
     BoothImageView,
     BoothListView,
     BoothLogoView,
+    BoothPhotoView,
     BoothRankingView,
     BoothTagListView,
     BoothViewLogView,
@@ -21,5 +22,6 @@ urlpatterns = [
     *route("booths/<int:booth_id>", BoothDetailView.as_view()),
     *route("booths/<int:booth_id>/image", BoothImageView.as_view()),
     *route("booths/<int:booth_id>/logo", BoothLogoView.as_view()),
+    *route("booths/<int:booth_id>/images/<int:position>", BoothPhotoView.as_view()),
     *route("booths/<int:booth_id>/views", BoothViewLogView.as_view()),
 ]
