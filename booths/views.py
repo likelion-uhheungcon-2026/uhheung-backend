@@ -13,7 +13,7 @@ from django.db.models import (
     Sum,
     Value,
 )
-from django.db.models.functions import Cast, Coalesce, Lower
+from django.db.models.functions import Cast, Coalesce, Lower, NullIf
 from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -38,16 +38,37 @@ RANKING_METRICS = {
 }
 
 
+def view_count():
+    if settings.VIEW_COUNT_METRIC == "visitor":
+        return Count("views__visitor_id", distinct=True)
+
+    return Count("views")
+
+
+def viewing_time():
+    if settings.VIEWING_TIME_METRIC == "avg":
+        return Cast(Coalesce(Avg("views__duration_ms"), Value(0.0)), IntegerField())
+
+    if settings.VIEWING_TIME_METRIC == "visitor":
+        return Cast(
+            Coalesce(Sum("views__duration_ms"), Value(0))
+            / Coalesce(NullIf(Count("views__visitor_id", distinct=True), Value(0)), Value(1)),
+            IntegerField(),
+        )
+
+    return Coalesce(Sum("views__duration_ms"), Value(0))
+
+
 def with_stats(queryset):
     recent_since = datetime.now(timezone.utc) - timedelta(
         minutes=settings.TRENDING_WINDOW_MINUTES
     )
 
     return queryset.annotate(
-        view_count=Count("views"),
+        view_count=view_count(),
         recent_view_count=Count("views", filter=Q(views__viewed_at__gte=recent_since)),
         visitor_count=Count("views__visitor_id", distinct=True),
-        total_duration_ms=Coalesce(Sum("views__duration_ms"), Value(0)),
+        total_duration_ms=viewing_time(),
         avg_duration_ms=Cast(
             Coalesce(Avg("views__duration_ms"), Value(0.0)), IntegerField()
         ),
