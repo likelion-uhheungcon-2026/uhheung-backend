@@ -103,6 +103,8 @@ MAX_PAGE_SIZE = 100
 
 MAX_VIEW_DURATION_MS = 6 * 60 * 60 * 1000
 TRENDING_WINDOW_MINUTES = 30
+VIEWING_TIME_METRIC = os.environ.get("VIEWING_TIME_METRIC", "total")
+VIEW_COUNT_METRIC = os.environ.get("VIEW_COUNT_METRIC", "click")
 
 SEED_FILE = BASE_DIR / "data" / "booths.seed.json"
 RETROSPECT_FILE = BASE_DIR / "data" / "retrospects.json"
