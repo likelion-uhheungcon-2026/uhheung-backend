@@ -13,7 +13,7 @@ from django.db.models import (
     Sum,
     Value,
 )
-from django.db.models.functions import Cast, Coalesce, Lower, NullIf
+from django.db.models.functions import Cast, Coalesce, Lower, NullIf, Sqrt
 from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -46,6 +46,18 @@ def view_count():
 
 
 def viewing_time():
+    if settings.VIEWING_TIME_METRIC == "weighted":
+        return Cast(
+            Coalesce(Sum("views__duration_ms"), Value(0))
+            / Sqrt(Coalesce(NullIf(Count("views"), Value(0)), Value(1))),
+            IntegerField(),
+        )
+
+    if settings.VIEWING_TIME_METRIC == "long":
+        return Count(
+            "views", filter=Q(views__duration_ms__gte=settings.VIEWING_TIME_LONG_MS)
+        )
+
     if settings.VIEWING_TIME_METRIC == "avg":
         return Cast(Coalesce(Avg("views__duration_ms"), Value(0.0)), IntegerField())
 
